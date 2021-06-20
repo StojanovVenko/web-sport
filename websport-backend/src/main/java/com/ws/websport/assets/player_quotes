@@ -1,0 +1,7 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbr: <http://dbpedia.org/resource/>
+
+SELECT * where {
+	dbr:Lionel_Messi dbp:quote ?quote.
+	FILTER (lang(?quote) = "en")
+}

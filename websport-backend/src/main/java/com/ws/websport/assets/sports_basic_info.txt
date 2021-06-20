@@ -1,0 +1,9 @@
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * where {
+	dbr:Table_tennis rdfs:label ?label;
+	    dbo:abstract ?abstract .
+	FILTER (lang(?abstract) = "en" && lang(?label) = "en")
+}

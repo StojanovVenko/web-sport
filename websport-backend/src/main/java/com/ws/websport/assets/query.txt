@@ -1,0 +1,19 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * where {
+	OPTIONAL { dbr:Kobe_Bryant dbp:name ?name. }
+	OPTIONAL { dbr:Kobe_Bryant dbp:fullname ?fullName. }
+	OPTIONAL { dbr:Kobe_Bryant dbo:height ?height. }
+	OPTIONAL { dbr:Kobe_Bryant dbo:thumbnail ?thumbnail. }
+	OPTIONAL { dbr:Kobe_Bryant dbo:abstract ?abstract. }
+    OPTIONAL { dbr:Kobe_Bryant rdfs:comment ?comment. }
+	OPTIONAL { dbr:Kobe_Bryant dbo:birthDate ?birthDate. }
+	OPTIONAL { dbr:Kobe_Bryant dbp:birthPlace ?birthPlace. }
+	FILTER (lang(?abstract) = "en")
+}
+
+
+
