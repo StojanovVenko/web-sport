@@ -6,7 +6,8 @@ import com.ws.websport.service.PlayerService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping(value = "/api/players")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PlayerController {
 
     private final PlayerService playerService;

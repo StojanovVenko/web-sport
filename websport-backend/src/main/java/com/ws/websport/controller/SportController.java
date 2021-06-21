@@ -2,15 +2,11 @@ package com.ws.websport.controller;
 
 import com.ws.websport.model.Sport;
 import com.ws.websport.service.SportService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sports")
+@RequestMapping(value = "/api/sports")
+@CrossOrigin(origins = "http://localhost:3000")
 public class SportController {
 
     private final SportService sportService;
