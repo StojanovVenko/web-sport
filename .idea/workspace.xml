@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f1f0c88-be37-4945-9ca9-45e81db2ddeb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/websport-frontend/src/components/App/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-backend/src/main/java/com/ws/websport/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/websport-backend/src/main/java/com/ws/websport/controller/PlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-backend/src/main/java/com/ws/websport/controller/SportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/websport-backend/src/main/java/com/ws/websport/controller/SportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/websport-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/websport-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/App/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websport-frontend/src/components/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websport-frontend/src/components/Players/Players.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/Players/Players.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/websport-frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624202071040</updated>
-      <workItem from="1624202074391" duration="8106000" />
+      <workItem from="1624202074391" duration="10249000" />
     </task>
     <servers />
   </component>

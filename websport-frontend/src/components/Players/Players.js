@@ -16,7 +16,7 @@ const Players = () => {
 
 
     return (
-        <h1> This is players component</h1>
+        <h1 className={"text-primary"}> This is players component</h1>
     )
 };
 
