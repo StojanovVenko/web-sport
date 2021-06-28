@@ -8,7 +8,6 @@ const Players = () => {
         PlayersService.getPlayer("Messi")
             .then(response => {
                 setCurrPlayer(response.data);
-                console.log(response.data);
             }).catch(err => {
             console.log("Error in Players component!");
         });

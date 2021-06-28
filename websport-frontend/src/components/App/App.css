@@ -2,15 +2,13 @@
   text-align: center;
 }
 
+body{
+  background-image: linear-gradient(to left, gray, white);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -35,4 +33,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.blank_content {
+  min-height: 500px;
 }

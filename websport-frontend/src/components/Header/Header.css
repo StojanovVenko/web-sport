@@ -1,0 +1,9 @@
+#categories li:hover {
+    background-color: rgb(242, 101, 34);
+    color:white;
+}
+
+.opacity {
+    opacity: 0.9;
+}
+

@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f1f0c88-be37-4945-9ca9-45e81db2ddeb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/websport-frontend/src/components/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/App/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/websport-frontend/src/components/Players/Players.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/Players/Players.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websport-frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,19 +54,6 @@
       <recent name="C:\Users\Venko.Stojanov\IdeaProjects\websport\websport-frontend\src\components\App" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,7 +62,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624202071040</updated>
-      <workItem from="1624202074391" duration="10249000" />
+      <workItem from="1624202074391" duration="16475000" />
+      <workItem from="1624355532775" duration="2406000" />
     </task>
     <servers />
   </component>
@@ -95,5 +80,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
