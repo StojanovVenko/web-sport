@@ -30,7 +30,6 @@ class App extends React.Component {
             .then(response => {
                 this.setState({currPlayer: response.data});
                 console.log(response.data);
-
             }).catch(err => {
             console.log("Error in Players component!");
         });
@@ -63,17 +62,18 @@ class App extends React.Component {
                                     openNav={this.openNav}
                                     getPlayerDetails={this.getPlayerDetails}
                                     category={"Players"}/>
-                                    <div className={"blank_content"}/>
+                            <div className={"blank_content"}/>
 
 
-                            {/*<div className="banner_section layout_padding">*/}
-                            {/*    <div className="container">*/}
-                            {/*        /!*<Carousel1 />*!/*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-                            {/*<div className="jewellery_section">*/}
-                            {/*    /!*<Carousel2 />*!/*/}
-                            {/*</div>*/}
+                            <div className="banner_section layout_padding">
+                                <div className="container">
+                                    {/*<Carousel1 />*/}
+                                </div>
+                            </div>
+                            <div className="jewellery_section">
+                                {/*<Carousel1 />*/}
+                                {/*<Carousel2 />*/}
+                            </div>
 
 
                         </div>
@@ -108,7 +108,7 @@ class App extends React.Component {
                             getPlayerDetails={this.getPlayerDetails}
                             category={"Sports"}/>
                     <div className={"blank_content text-center"}>
-                    Sports component
+                        Sports component
                     </div>
                 </Route>
             </Switch>

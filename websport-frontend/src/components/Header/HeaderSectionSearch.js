@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./Header.css";
 import {useHistory, useLocation} from "react-router";
 import {Link} from "react-router-dom";
+import {categories} from "../../constants";
 
 const HeaderSectionSearch = (props) => {
     const [searchPlayer, setSearchPlayer] = useState("");
@@ -14,9 +15,8 @@ const HeaderSectionSearch = (props) => {
     const history = useHistory();
     const location = useLocation();
 
-    const categories = ["Players", "Teams", "Sports"];
-
-    const searchFor = (cat) => {
+    const searchAboutCategory = (cat) => {
+        console.log(location)
         if(cat === category) return;
 
         setCategory(cat);
@@ -34,7 +34,7 @@ const HeaderSectionSearch = (props) => {
 
     }
 
-    const setSearch = (value) => {
+    const setSearchString = (value) => {
         setInputValue(value);
         if(category === categories[0]) {
             setSearchPlayer(value);
@@ -49,7 +49,22 @@ const HeaderSectionSearch = (props) => {
         }
     }
 
-    searchFor(props.category);
+    const search = (e) => {
+        e.preventDefault()
+
+        if(category === categories[0]) {
+            props.getPlayerDetails(searchPlayer);
+            history.push("/players")
+            return;
+        }
+        if(category === categories[1]) {
+            return;
+        }
+        if(category === categories[2]) {
+        }
+    }
+
+    // searchAboutCategory(props.category);
 
     return (
         <div className="header_section" >
@@ -73,7 +88,7 @@ const HeaderSectionSearch = (props) => {
                         <div id="categories" className="dropdown-menu " aria-labelledby="dropdownMenuButton">
                             {
                                 categories.map((c) => {
-                                    return <li className="dropdown-item" onClick={() => searchFor(c)}>{c}</li>;
+                                    return <li className="dropdown-item" onClick={() => searchAboutCategory(c)}>{c}</li>;
                                 })
                             }
                         </div>
@@ -84,7 +99,7 @@ const HeaderSectionSearch = (props) => {
                             <input
                                 value={inputValue}
                                 onChange={(el) => {
-                                    setSearch(el.target.value);
+                                    setSearchString(el.target.value);
                                     console.log(el.target.value)
                                 }
                                 }
@@ -93,11 +108,7 @@ const HeaderSectionSearch = (props) => {
                                 placeholder={"Search for " + category.substr(0, category.length-1)}/>
                             <div className="input-group-append">
                                 <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        props.getPlayerDetails(searchPlayer)
-                                        history.push("/players");
-                                    }}
+                                    onClick={(e) => search(e)}
                                     className="btn btn-secondary"
                                     type="submit"
                                     style={{backgroundColor: "#f26522", borderColor: "#f26522"}}>

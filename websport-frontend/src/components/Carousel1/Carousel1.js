@@ -1,6 +1,6 @@
 import React from "react";
 
-const Carousel1 = () => {
+const Carousel1 = (props) => {
 
     return (
         <div id="my_slider" className="carousel slide" data-ride="carousel">

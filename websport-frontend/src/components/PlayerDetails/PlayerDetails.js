@@ -1,6 +1,7 @@
 import React from "react";
 import "./PlayerDetails.css";
 import {withRouter} from "react-router";
+import Quotes from "./Quotes/Quotes";
 
 const PlayerDetails = (props) => {
 
@@ -11,6 +12,8 @@ const PlayerDetails = (props) => {
     if(props.player && props.player.thumbnail !== null) {
         imagePath = props.player.thumbnail;
     }
+
+
 
     return (
         <div className="container text-light rounded-3 pd-container" >
@@ -25,13 +28,17 @@ const PlayerDetails = (props) => {
                         />
 
                     </a>
-                    <h3 className={"p-lg-5 "}><b>{props.player.fullName} </b> <br/>({props.player.name})</h3>
+                    <h3 className={"p-lg-5 text-light"}><b>{props.player.fullName} </b> <br/>({props.player.name})</h3>
 
                 </div>
                 <span className={"col-sm-6 p-5"}>
                     {props.player.description}
                 </span>
-
+                <div>
+                    Height: <div><b>{props.player.height}</b></div>
+                    Born: <div><b>{props.player.birthPlace}, {props.player.birthDate}</b></div>
+                </div>
+            <Quotes quotes={props.player.playerQuotes}/>
         </div>
 
     );

@@ -11,7 +11,9 @@ const Header = (props) => {
             <HeaderSectionSearch closeNav={props.closeNav}
                                  openNav={props.openNav}
                                  getPlayerDetails={props.getPlayerDetails}
-                                 category={props.category}/>
+                                 setCategory={props.setCategory}
+                                 category={props.category}
+                                 value={props.value}/>
         </div>
     );
 }
