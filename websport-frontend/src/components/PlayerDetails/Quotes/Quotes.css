@@ -6,7 +6,7 @@
     padding: 2%;
     box-shadow: 10px 10px 8px rgb(242, 101, 34);
     text-shadow: 5px 5px 8px black;
-    background-image: linear-gradient(to right, gray, white);;
+    background: whitesmoke;
     border: 1px solid black;
     overflow: auto;
     margin:0 auto 3% auto;

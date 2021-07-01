@@ -5,14 +5,17 @@ import Quotes from "./Quotes/Quotes";
 
 const PlayerDetails = (props) => {
 
-    if(props.player===null) return <>Player not found</>
+    console.log(props.player, "PLAYER")
+
+    if(props.player === null || props.player.length) return (<div>Player not found</div>)
 
     function getDate(date) {
         return new Date(date)
     }
 
     return (
-        <div className="container text-light rounded-3 pd-container my-3 mx-auto" >
+        props.player.length !== 0 ?
+            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.8"}} >
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4"}>
                         <a href={props.player.thumbnail} target={"_blank"}>
@@ -38,8 +41,11 @@ const PlayerDetails = (props) => {
 
             <Quotes quotes={props.player.playerQuotes}/>
         </div>
-
-    );
+            :
+            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.9"}}>
+                <h3 className={"p-5 text-light text-center"}>Player not found</h3>
+            </div>
+            );
 };
 
 export default withRouter(PlayerDetails);

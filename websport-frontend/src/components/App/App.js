@@ -53,7 +53,7 @@ class App extends React.Component {
 
     render() {
 
-        return <>
+        return <div className={"h-auto"}>
             <Switch>
                 <Route path={"/home"} exact>
                     <div className="banner_bg_main" >
@@ -114,7 +114,7 @@ class App extends React.Component {
             </Switch>
             <Footer/>
 
-        </>;
+        </div>;
     }
 }
 
