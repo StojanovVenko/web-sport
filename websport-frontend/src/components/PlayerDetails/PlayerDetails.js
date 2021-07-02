@@ -39,13 +39,13 @@ const PlayerDetails = (props) => {
                     {props.player.description}
                 </div>
 
-            <Quotes quotes={props.player.playerQuotes}/>
-        </div>
+                <Quotes quotes={props.player.playerQuotes}/>
+            </div>
             :
             <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.9"}}>
                 <h3 className={"p-5 text-light text-center"}>Player not found</h3>
             </div>
-            );
+    );
 };
 
 export default withRouter(PlayerDetails);

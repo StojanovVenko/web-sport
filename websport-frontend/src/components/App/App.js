@@ -14,6 +14,7 @@ import HeaderSectionSearch from "../Header/HeaderSectionSearch";
 import Header from "../Header/Header";
 import Sports from "../Sports/Sports";
 import {categories} from "../../constants";
+import SportDetails from "../Sports/SportDetails";
 
 class App extends React.Component {
 
@@ -119,9 +120,7 @@ class App extends React.Component {
                             category={categories.sports}
                             sport={this.state.selectedSport}
                             selectSport={this.selectSport}/>
-                    <div className={"blank_content text-center"}>
-                        Details for sport
-                    </div>
+                    <SportDetails />
                 </Route>
                 <Route path={"/sports"} >
                     <Header closeNav={this.closeNav}
