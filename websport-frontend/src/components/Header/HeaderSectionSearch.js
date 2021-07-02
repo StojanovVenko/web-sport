@@ -124,25 +124,44 @@ const HeaderSectionSearch = (props) => {
                             <div className="collapse " id="collapseExample">
                                 <div id={"h-sports"} className="card card-body">
                                     {
-                                        sports.map((sportList, i) => {
-                                            return <div className={"row"}>
-                                                {sportList.map(s => {
+                                        // sports.map((sportList, i) => {
+                                        //     return <div className={"row"}>
+                                        //         {sportList.map(s => {
+                                        //             return <div onClick={() => {
+                                        //                 document.getElementById("collapseExample").classList.remove("show");
+                                        //                 selectSport(s);
+                                        //             }}
+                                        //                         className={"col-sm-4"}>
+                                        //                 <img
+                                        //                     className={"rounded-3"} src={"images/sports/" + s.imagePath}
+                                        //                     alt={"img"}
+                                        //                     width={"20px"} height={"20px"}/>
+                                        //                 {s.sport.toString()}
+                                        //             </div>
+                                        //
+                                        //         })
+                                        //         }
+                                        //     </div>
+                                        // })
+                                        <div className={"row"}>
+                                            {
+                                                sports.map(sport => {
                                                     return <div onClick={() => {
                                                         document.getElementById("collapseExample").classList.remove("show");
-                                                        selectSport(s);
-                                                    }}
-                                                                className={"col-sm-4"}>
-                                                        <img
-                                                            className={"rounded-3"} src={"images/sports/" + s.imagePath}
-                                                            alt={"img"}
-                                                            width={"20px"} height={"20px"}/>
-                                                        {s.sport.toString()}
-                                                    </div>
+                                                        selectSport(sport);
+                                                    }} className={"col-4"}>
+                                                        <div >
+                                                            <img
+                                                                className={"rounded-3"} src={"images/sports/" + sport.imagePath}
+                                                                alt={"img"}
+                                                                width={"20px"} height={"20px"}/>
+                                                            {sport.sport}
+                                                        </div>
 
+                                                    </div>
                                                 })
-                                                }
-                                            </div>
-                                        })
+                                            }
+                                        </div>
                                     }</div>
                             </div>
                         </div>

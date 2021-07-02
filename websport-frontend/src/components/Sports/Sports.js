@@ -14,26 +14,25 @@ const Sports = (props) => {
 
     return (<div id={"sports"} className={"container"}>
         {
-            sports.map((sportList, i) => {
-                return <div className={"row"}>
-                    {sportList.map(s => {
-                        return <div onClick={() => selectSport(s)} className={"col-sm-4 col-md-2"}>
-                            <img
-                                onMouseOver={(el) => {
-                                    el.target.classList.toggle("sport-hover-icon")
-                                }}
-                                onMouseOut={(el) => {
-                                    el.target.classList.toggle("sport-hover-icon")
-                                }}
-                                className={"rounded-3"} src={"images/sports/" + s.imagePath} alt={"img"}
-                                width={"100px"} height={"100px"}/><br/>
-                            {s.sport.toString()}
-                        </div>
 
+            <div className={"row"}>
+                {
+                    sports.map(sport => {
+                        return <div onClick={() => selectSport(sport)} className={"col-sm-4 col-md-2"}>
+                            <div className={"sport-item bg-white my-2"}>
+                                <img
+                                    className={"rounded-3"}
+                                    src={"images/sports/" + sport.imagePath}
+                                    alt={"img"}
+                                    width={"100px"} height={"100px"}/><br/>
+                                {sport.sport}
+                            </div>
+
+                        </div>
                     })
-                    }
-                </div>
-            })
+                }
+            </div>
+
         }
     </div>);
 };
