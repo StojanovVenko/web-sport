@@ -218,7 +218,7 @@ button {
     background-color: white;
     width: 100%;
     float: left;
-    background-image: url("../images/bg-players.jpg"),  linear-gradient(to left, gray, white);
+    background-image: url("../images/bg-players.jpg"), linear-gradient(to left, gray, white);
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;

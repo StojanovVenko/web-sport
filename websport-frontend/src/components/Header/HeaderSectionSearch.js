@@ -68,7 +68,7 @@ const HeaderSectionSearch = (props) => {
 
     return (
         <div className="header_section" >
-            <div className="container p-2 rounded-pill" style={{opacity: "0.9", backgroundColor: "#252525"}}>
+            <div className="container p-2 rounded-pill" style={{ backgroundColor: "#2b2a29"}}>
                 <div className="containt_main w-75 ml-auto mr-auto" >
                     <div id="mySidenav" className="sidenav" >
                         <a href="javascript:void(0)" className="closebtn" onClick={props.closeNav}>&times;</a>
@@ -78,6 +78,7 @@ const HeaderSectionSearch = (props) => {
                         <Link to={"#"}>Universities</Link>
                     </div>
                     <span className="toggle_icon" onClick={props.openNav}>
+                        {/*<i className="fa fa-align-justify w-100 h-100" />*/}
                         <img width={"38px"} src="images/toggle-icon.png"/>
                     </span>
                     <div className="dropdown" >

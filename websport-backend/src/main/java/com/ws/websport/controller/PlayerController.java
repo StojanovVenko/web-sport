@@ -3,6 +3,7 @@ package com.ws.websport.controller;
 import com.ws.websport.model.Player;
 import com.ws.websport.model.exceptions.PlayerNotFoundException;
 import com.ws.websport.service.PlayerService;
+import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,7 +24,7 @@ public class PlayerController {
 
     @GetMapping("/search")
     public Player getPlayerInfo(@RequestParam(name = "player") String player) throws PlayerNotFoundException {
-        return playerService.getPlayerInfo(player);
+        return playerService.getPlayerInfo(WordUtils.capitalizeFully(player));
     }
 
 }

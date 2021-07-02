@@ -5,43 +5,47 @@ import Quotes from "./Quotes/Quotes";
 
 const PlayerDetails = (props) => {
 
-    if(props.player===null) return <>Player not found</>
+    console.log(props.player, "PLAYER")
 
-    let imagePath = "images/user.png";
+    if(props.player === null || props.player.length) return (<div>Player not found</div>)
 
-    if(props.player && props.player.thumbnail !== null) {
-        imagePath = props.player.thumbnail;
+    function getDate(date) {
+        return new Date(date)
     }
 
-
-
     return (
-        <div className="container text-light rounded-3 pd-container" >
-                <div className={"col-md-12 col-lg-6 text-sm-start "} style={{ float: "left"}}>
-                    <a target={"_blank"} href={props.player.thumbnail} style={{zIndex: "1"}}>
-                        <img
-                            align={"left"}
-                            className="rounded-pill"
-                            style={{height: "300px", width: "300px"}}
-                            alt={props.player.name}
-                            src={imagePath}
-                        />
-
-                    </a>
-                    <h3 className={"p-lg-5 text-light"}><b>{props.player.fullName} </b> <br/>({props.player.name})</h3>
-
+        props.player.length !== 0 ?
+            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.8"}} >
+                <div className={"col-12 text-center d-flex justify-content-center"}>
+                    <div className={"mt-4"}>
+                        <a href={props.player.thumbnail} target={"_blank"}>
+                            <img
+                                className="rounded-pill mx-auto"
+                                style={{height: "300px", width: "300px"}}
+                                alt={props.player.name}
+                                src={props.player.thumbnail}
+                            />
+                        </a>
+                        <h3 className={"text-light pb-0"}><b>{props.player.fullName}</b></h3>
+                        <h4 className={"text-light py-0"}>({props.player.name})</h4>
+                    </div>
                 </div>
-                <span className={"col-sm-6 p-5"}>
+
+                <div className={"col-12 p-2"}>
+                    Height: <b>{props.player.height}m</b><br/>
+                    Born: <b>{props.player.birthPlace}, {getDate(props.player.birthDate).toDateString()}</b>
+                </div>
+                <div className={"col-12 p-2"}>
                     {props.player.description}
-                </span>
-                <div>
-                    Height: <div><b>{props.player.height}</b></div>
-                    Born: <div><b>{props.player.birthPlace}, {props.player.birthDate}</b></div>
                 </div>
+
             <Quotes quotes={props.player.playerQuotes}/>
         </div>
-
-    );
+            :
+            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.9"}}>
+                <h3 className={"p-5 text-light text-center"}>Player not found</h3>
+            </div>
+            );
 };
 
 export default withRouter(PlayerDetails);
