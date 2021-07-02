@@ -7,7 +7,7 @@ import {categories} from "../../constants";
 const HeaderSectionSearch = (props) => {
     const [searchPlayer, setSearchPlayer] = useState("");
     const [searchTeam, setSearchTeam] = useState("");
-    const [searchSport, setSearchSport] = useState("");
+    const [searchSport, setSearchSport] = useState(props.choosenSport? props.choosenSport : {sport: "Choose sport"});
     const [inputValue, setInputValue] = useState("");
 
     // category can be players, teams, or sports. By default is players
@@ -94,7 +94,7 @@ const HeaderSectionSearch = (props) => {
                         </div>
                     </div>
                     <div className="main">
-                        {/*// <!-- Another variation with a button -->*/}
+                        {category !== categories[2] &&
                         <form className="input-group">
                             <input
                                 value={inputValue}
@@ -116,6 +116,20 @@ const HeaderSectionSearch = (props) => {
                                 </button>
                             </div>
                         </form>
+                        }
+                        {category === categories[2] &&
+                        <div className="btn-group dropdown  w-100">
+                            <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                {searchSport.sport}
+                            </button>
+                            <div className="dropdown-menu">
+                                <a className="dropdown-item" href="#">Regular link</a>
+                                <a className="dropdown-item" href="#">Active link</a>
+                                <a className="dropdown-item" href="#">Another link</a>
+                            </div>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

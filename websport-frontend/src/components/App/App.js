@@ -12,6 +12,7 @@ import Carousel2 from "../Carousel2/Carousel2";
 import HeaderSectionTop from "../Header/HeaderSectionTop";
 import HeaderSectionSearch from "../Header/HeaderSectionSearch";
 import Header from "../Header/Header";
+import Sports from "../Sports/Sports";
 
 class App extends React.Component {
 
@@ -108,7 +109,7 @@ class App extends React.Component {
                             getPlayerDetails={this.getPlayerDetails}
                             category={"Sports"}/>
                     <div className={"blank_content text-center"}>
-                        Sports component
+                        <Sports/>
                     </div>
                 </Route>
             </Switch>

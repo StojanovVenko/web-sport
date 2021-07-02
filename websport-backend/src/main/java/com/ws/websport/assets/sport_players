@@ -1,0 +1,40 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct * where { {
+	?user dbp:sport dbr:Football .
+        ?user rdf:type dbo:Person .
+        OPTIONAL { ?user dbp:name ?name. }
+        	OPTIONAL { ?user dbp:fullname ?fullName. }
+        	OPTIONAL { ?user dbo:height ?height. }
+        	OPTIONAL { ?user dbo:thumbnail ?thumbnail. }
+        	OPTIONAL { ?user dbo:abstract ?abstract. }
+            OPTIONAL { ?user rdfs:comment ?comment. }
+        	OPTIONAL { ?user dbo:birthDate ?birthDate. }
+        	OPTIONAL { ?user dbp:birthPlace ?birthPlace. }
+        	FILTER (lang(?abstract) = "en" && lang(?comment) ="en")
+}
+union {
+	?user dbp:sports dbr:Football .
+        ?user rdf:type dbo:Person .
+        OPTIONAL { ?user dbp:name ?name. }
+        	OPTIONAL { ?user dbp:fullname ?fullName. }
+        	OPTIONAL { ?user dbo:height ?height. }
+        	OPTIONAL { ?user dbo:thumbnail ?thumbnail. }
+        	OPTIONAL { ?user dbo:abstract ?abstract. }
+            OPTIONAL { ?user rdfs:comment ?comment. }
+        	OPTIONAL { ?user dbo:birthDate ?birthDate. }
+        	OPTIONAL { ?user dbp:birthPlace ?birthPlace. }
+        	FILTER (lang(?abstract) = "en" && lang(?comment) ="en")
+} }
+
+
+
+
+
+
+
+
+

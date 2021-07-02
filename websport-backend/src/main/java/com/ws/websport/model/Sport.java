@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -12,4 +14,6 @@ import lombok.Setter;
 public class Sport {
     String name;
     String comment;
+
+    List<Player> players;
 }
