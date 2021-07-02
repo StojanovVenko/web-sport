@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./PlayerDetails.css";
 import {withRouter} from "react-router";
 import Quotes from "./Quotes/Quotes";
 
 const PlayerDetails = (props) => {
 
-    console.log(props.player, "PLAYER")
+    const [seeMore, setSeeMore] = useState(false);
 
-    if(props.player === null || props.player.length) return (<div className={"pd-container"}>Player not found</div>)
+    if (props.player === null || props.player.length) return (<div className={"pd-container"}>Player not found</div>)
 
     function getDate(date) {
         return new Date(date)
@@ -15,7 +15,7 @@ const PlayerDetails = (props) => {
 
     return (
         props.player.length !== 0 ?
-            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.8"}} >
+            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.8"}}>
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4"}>
                         <a href={props.player.thumbnail} target={"_blank"}>
@@ -35,17 +35,26 @@ const PlayerDetails = (props) => {
                     Height: <b>{props.player.height}m</b><br/>
                     Born: <b>{props.player.birthPlace}, {getDate(props.player.birthDate).toDateString()}</b>
                 </div>
-                <div className={"col-12 p-2"}>
-                    {props.player.description}
-                </div>
+                {
+                    seeMore === true ?
+                        <p>
+                            {props.player.description}
+                            <span className="btn btn-link" onClick={() => setSeeMore(!seeMore)}>... See less</span>
+                        </p>
+                    :
+                        <p>
+                            {props.player.description.substr(0, 2000)}
+                            <span className="btn btn-link" onClick={() => setSeeMore(!seeMore)}>... See more</span>
+                        </p>
+                }
 
-            <Quotes quotes={props.player.playerQuotes}/>
-        </div>
+                <Quotes quotes={props.player.playerQuotes}/>
+            </div>
             :
-            <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.9"}}>
+            <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
                 <h3 className={"p-5 text-light text-center"}>Player not found</h3>
             </div>
-            );
+    );
 };
 
 export default withRouter(PlayerDetails);
