@@ -13,6 +13,7 @@ import HeaderSectionTop from "../Header/HeaderSectionTop";
 import HeaderSectionSearch from "../Header/HeaderSectionSearch";
 import Header from "../Header/Header";
 import Sports from "../Sports/Sports";
+import {categories} from "../../constants";
 
 class App extends React.Component {
 
@@ -20,7 +21,9 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            currPlayer: []
+            currPlayer: [],
+
+            selectedSport: {sport: "Choose sport"}
         };
     }
     // const [currPlayer, setCurrPlayer] = useState([]);
@@ -52,6 +55,10 @@ class App extends React.Component {
         document.getElementById("mySidenav").style.width = "0";
     }
 
+    selectSport = (sport) => {
+        this.setState({selectedSport: sport});
+    }
+
     render() {
 
         return <div className={"h-auto"}>
@@ -62,7 +69,9 @@ class App extends React.Component {
                             <Header closeNav={this.closeNav}
                                     openNav={this.openNav}
                                     getPlayerDetails={this.getPlayerDetails}
-                                    category={"Players"}/>
+                                    category={categories.players}
+                                    sport={this.state.selectedSport}
+                                    selectSport={this.selectSport}/>
                             <div className={"blank_content"}/>
 
 
@@ -91,25 +100,39 @@ class App extends React.Component {
                     <Header closeNav={this.closeNav}
                             openNav={this.openNav}
                             getPlayerDetails={this.getPlayerDetails}
-                            category={"Players"}/>
+                            category={categories.players}/>
                     <PlayerDetails player={this.state.currPlayer}/>
                 </Route>
                 <Route path={"/teams"} exact>
                     <Header closeNav={this.closeNav}
                             openNav={this.openNav}
                             getPlayerDetails={this.getPlayerDetails}
-                            category={"Teams"}/>
+                            category={categories.teams}/>
                     <div className={"blank_content text-center"}>
                         Teams component
                     </div>
                 </Route>
-                <Route path={"/sports"} exact>
+                <Route path={"/sports/details"} exact>
                     <Header closeNav={this.closeNav}
                             openNav={this.openNav}
                             getPlayerDetails={this.getPlayerDetails}
-                            category={"Sports"}/>
+                            category={categories.sports}
+                            sport={this.state.selectedSport}
+                            selectSport={this.selectSport}/>
                     <div className={"blank_content text-center"}>
-                        <Sports/>
+                        Details for sport
+                    </div>
+                </Route>
+                <Route path={"/sports"} >
+                    <Header closeNav={this.closeNav}
+                            openNav={this.openNav}
+                            getPlayerDetails={this.getPlayerDetails}
+                            category={categories.sports}
+                            sport={this.state.selectedSport}
+                            selectSport={this.selectSport}/>
+
+                    <div className={"blank_content text-center"}>
+                        <Sports selectSport={this.selectSport} />
                     </div>
                 </Route>
             </Switch>

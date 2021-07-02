@@ -7,7 +7,7 @@ const PlayerDetails = (props) => {
 
     console.log(props.player, "PLAYER")
 
-    if(props.player === null || props.player.length) return (<div>Player not found</div>)
+    if(props.player === null || props.player.length) return (<div className={"pd-container"}>Player not found</div>)
 
     function getDate(date) {
         return new Date(date)
@@ -42,7 +42,7 @@ const PlayerDetails = (props) => {
             <Quotes quotes={props.player.playerQuotes}/>
         </div>
             :
-            <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.9"}}>
+            <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.9"}}>
                 <h3 className={"p-5 text-light text-center"}>Player not found</h3>
             </div>
             );

@@ -1,7 +1,7 @@
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 export const ACCESS_TOKEN = 'accessToken';
 // export const AUTHORIZATION_HEADER = 'Authorization';
-export const categories = ["Players", "Teams", "Sports"];
+export const categories = {players: "Players", teams:  "Teams", sports: "Sports"};
 
 export const sports = [
     [{sport: "Soccer", URI: "", imagePath: "soccer.png"},

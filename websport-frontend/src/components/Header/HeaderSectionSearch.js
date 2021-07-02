@@ -2,100 +2,93 @@ import React, {useState} from "react";
 import "./Header.css";
 import {useHistory, useLocation} from "react-router";
 import {Link} from "react-router-dom";
-import {categories} from "../../constants";
+import {categories, sports} from "../../constants";
 
 const HeaderSectionSearch = (props) => {
     const [searchPlayer, setSearchPlayer] = useState("");
     const [searchTeam, setSearchTeam] = useState("");
-    const [searchSport, setSearchSport] = useState(props.choosenSport? props.choosenSport : {sport: "Choose sport"});
     const [inputValue, setInputValue] = useState("");
 
-    // category can be players, teams, or sports. By default is players
-    const [category, setCategory] = useState(props.category ? props.category : "Players")
+    const [category, setCategory] = useState(props.category ? props.category : categories.players)
     const history = useHistory();
     const location = useLocation();
 
     const searchAboutCategory = (cat) => {
-        console.log(location)
-        if(cat === category) return;
-
         setCategory(cat);
-        if(cat === categories[0]) {
+
+        if (cat === categories.players) {
             setInputValue(searchPlayer);
         }
-        if(cat === categories[1]) {
+        if (cat === categories.teams) {
             setInputValue(searchTeam);
         }
-        if(cat === categories[2]) {
-            setInputValue(searchSport);
-        }
-        console.log(cat, cat.toLowerCase())
-        history.push("/" + cat.toLowerCase());
 
+        history.push("/" + cat.toLowerCase());
     }
 
     const setSearchString = (value) => {
         setInputValue(value);
-        if(category === categories[0]) {
+
+        if (category === categories.players) {
             setSearchPlayer(value);
             return;
         }
-        if(category === categories[1]) {
+        if (category === categories.teams) {
             setSearchTeam(value);
-            return;
-        }
-        if(category === categories[2]) {
-            setSearchSport(value);
         }
     }
 
     const search = (e) => {
         e.preventDefault()
 
-        if(category === categories[0]) {
+        if (category === categories.players) {
             props.getPlayerDetails(searchPlayer);
             history.push("/players")
             return;
         }
-        if(category === categories[1]) {
+        if (category === categories.teams) {
             return;
         }
-        if(category === categories[2]) {
+        if (category === categories.sports) {
         }
     }
 
-    // searchAboutCategory(props.category);
+    const selectSport = (s) => {
+        props.selectSport(s);
+        history.push("/sports/details");
+    }
 
     return (
-        <div className="header_section" >
-            <div className="container p-2 rounded-pill" style={{ backgroundColor: "#2b2a29"}}>
-                <div className="containt_main w-75 ml-auto mr-auto" >
-                    <div id="mySidenav" className="sidenav" >
+        <div id={"header"} className="header_section">
+            <div className="container p-2 rounded-pill" style={{backgroundColor: "#2b2a29"}}>
+                <div className="containt_main w-75 ml-auto mr-auto">
+                    <div id="mySidenav" className="sidenav">
                         <a href="javascript:void(0)" className="closebtn" onClick={props.closeNav}>&times;</a>
-                        <Link to={"/players"}>Players</Link>
-                        <Link to={"/teams"}>Teams</Link>
-                        <Link to={"/sports"}>Sports</Link>
+                        <Link onClick={() => searchAboutCategory(categories.players)} to={"/players"}>Players</Link>
+                        <Link onClick={() => searchAboutCategory(categories.teams)} to={"/teams"}>Teams</Link>
+                        <Link onClick={() => searchAboutCategory(categories.sports)} to={"/sports"}>Sports</Link>
                         <Link to={"#"}>Universities</Link>
                     </div>
                     <span className="toggle_icon" onClick={props.openNav}>
                         {/*<i className="fa fa-align-justify w-100 h-100" />*/}
                         <img width={"38px"} src="images/toggle-icon.png"/>
                     </span>
-                    <div className="dropdown" >
+                    <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">{category}
                         </button>
                         <div id="categories" className="dropdown-menu " aria-labelledby="dropdownMenuButton">
                             {
-                                categories.map((c) => {
-                                    return <li className="dropdown-item" onClick={() => searchAboutCategory(c)}>{c}</li>;
+                                Object.values(categories).map((c) => {
+                                    return <li className="dropdown-item"
+                                               onClick={() => searchAboutCategory(c)}>{c}</li>;
                                 })
                             }
                         </div>
                     </div>
                     <div className="main">
-                        {category !== categories[2] &&
+                        {category !== categories.sports &&
                         <form className="input-group">
                             <input
                                 value={inputValue}
@@ -106,7 +99,7 @@ const HeaderSectionSearch = (props) => {
                                 }
                                 type="text"
                                 className="form-control"
-                                placeholder={"Search for " + category.substr(0, category.length-1)}/>
+                                placeholder={"Search for " + category.substr(0, category.length - 1)}/>
                             <div className="input-group-append">
                                 <button
                                     onClick={(e) => search(e)}
@@ -118,16 +111,39 @@ const HeaderSectionSearch = (props) => {
                             </div>
                         </form>
                         }
-                        {category === categories[2] &&
-                        <div className="btn-group dropdown  w-100">
-                            <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                {searchSport.sport}
-                            </button>
-                            <div className="dropdown-menu">
-                                <a className="dropdown-item" href="#">Regular link</a>
-                                <a className="dropdown-item" href="#">Active link</a>
-                                <a className="dropdown-item" href="#">Another link</a>
+                        {category === categories.sports && props.sport && props.sport.sport &&
+                        <div>
+                            <p className={"btn-group dropdown  w-100 ml-0"}>
+                                <a className="btn btn-secondary" data-toggle="collapse" href="#collapseExample"
+                                   role="button"
+                                   aria-expanded="false" aria-controls="collapseExample">
+                                    {props.sport.sport} <span className={"fa fa-angle-down"}/>
+                                </a>
+
+                            </p>
+                            <div className="collapse " id="collapseExample">
+                                <div id={"h-sports"} className="card card-body">
+                                    {
+                                        sports.map((sportList, i) => {
+                                            return <div className={"row"}>
+                                                {sportList.map(s => {
+                                                    return <div onClick={() => {
+                                                        document.getElementById("collapseExample").classList.remove("show");
+                                                        selectSport(s);
+                                                    }}
+                                                                className={"col-sm-4"}>
+                                                        <img
+                                                            className={"rounded-3"} src={"images/sports/" + s.imagePath}
+                                                            alt={"img"}
+                                                            width={"20px"} height={"20px"}/>
+                                                        {s.sport.toString()}
+                                                    </div>
+
+                                                })
+                                                }
+                                            </div>
+                                        })
+                                    }</div>
                             </div>
                         </div>
                         }

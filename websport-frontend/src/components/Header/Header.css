@@ -1,4 +1,4 @@
-#categories li:hover {
+#categories li:hover, #h-sports > div > div:hover {
     background-color: rgb(242, 101, 34);
     color:white;
 }
@@ -7,8 +7,24 @@
     opacity: 0.8;
 }
 
+#collapseSports .btn{
+    background-color: #6c757d;
+}
+
+#h-sports {
+    background-image: linear-gradient(to right, #5b5b5b, #9d9d9d) !important;
+    color: white !important;
+    text-shadow: 5px 5px 5px 5px black;
+}
+
 /*#categories *{*/
 /*    position: relative;*/
 /*    z-index: 1000;*/
 /*}*/
 
+/*#header {*/
+/*    -webkit-border-radius: 5px;*/
+/*    -moz-border-radius: 5px;*/
+/*    border-radius: 5px;*/
+/*    z-index: 999;*/
+/*}*/
