@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f1f0c88-be37-4945-9ca9-45e81db2ddeb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websport-frontend/src/components/Sports/Sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/components/Sports/Sports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websport-frontend/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/websport-frontend/src/constants/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websport-frontend/src/constants/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +87,7 @@
       <workItem from="1624202074391" duration="16475000" />
       <workItem from="1624355532775" duration="2406000" />
       <workItem from="1625057165040" duration="366000" />
+      <workItem from="1625486380089" duration="744000" />
     </task>
     <servers />
   </component>

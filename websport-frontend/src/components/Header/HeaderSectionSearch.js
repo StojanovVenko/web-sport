@@ -152,7 +152,7 @@ const HeaderSectionSearch = (props) => {
                                                     }} className={"col-4"}>
                                                         <div >
                                                             <img
-                                                                className={"rounded-3"} src={"images/sports/" + sport.imagePath}
+                                                                className={"rounded-3"} src={"images/sports/" + sport.imageName}
                                                                 alt={"img"}
                                                                 width={"20px"} height={"20px"}/>
                                                             {sport.sport}

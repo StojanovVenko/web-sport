@@ -22,7 +22,7 @@ const Sports = (props) => {
                             <div className={"sport-item bg-white my-2"}>
                                 <img
                                     className={"rounded-3"}
-                                    src={"images/sports/" + sport.imagePath}
+                                    src={"images/sports/" + sport.imageName}
                                     alt={"img"}
                                     width={"100px"} height={"100px"}/><br/>
                                 {sport.sport}
