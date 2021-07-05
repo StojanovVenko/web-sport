@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useHistory, Route, Switch, withRouter} from "react-router";
+import {useHistory, Route, Switch, withRouter, Redirect} from "react-router";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
@@ -13,8 +13,9 @@ import HeaderSectionTop from "../Header/HeaderSectionTop";
 import HeaderSectionSearch from "../Header/HeaderSectionSearch";
 import Header from "../Header/Header";
 import Sports from "../Sports/Sports";
-import {categories} from "../../constants";
+import {categories} from "../../constants/constants";
 import SportDetails from "../Sports/SportDetails";
+import sportsService from "../../service/sportsService";
 
 class App extends React.Component {
 
@@ -23,6 +24,7 @@ class App extends React.Component {
 
         this.state = {
             currPlayer: [],
+            currSport: null,
 
             selectedSport: {sport: "Choose sport"}
         };
@@ -57,6 +59,13 @@ class App extends React.Component {
     }
 
     selectSport = (sport) => {
+        sportsService.getSport(sport.URI)
+            .then(response => {
+
+            })
+            .catch(err => {
+
+            });
         this.setState({selectedSport: sport});
     }
 
@@ -64,6 +73,9 @@ class App extends React.Component {
 
         return <div className={"h-auto"}>
             <Switch>
+                <Route path={"/"} exact >
+                    <Redirect to={"/home"}/>
+                </Route>
                 <Route path={"/home"} exact>
                     <div className="banner_bg_main" >
                         <div className={"container"}>

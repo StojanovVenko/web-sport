@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Header.css";
 import {useHistory, useLocation} from "react-router";
 import {Link} from "react-router-dom";
-import {categories, sports} from "../../constants";
+import {categories, sports} from "../../constants/constants";
 
 const HeaderSectionSearch = (props) => {
     const [searchPlayer, setSearchPlayer] = useState("");
@@ -133,7 +133,7 @@ const HeaderSectionSearch = (props) => {
                                                     }}
                                                                 className={"col-sm-4"}>
                                                         <img
-                                                            className={"rounded-3"} src={"images/sports/" + s.imagePath}
+                                                            className={"rounded-3"} src={"images/sports/" + s.imageName}
                                                             alt={"img"}
                                                             width={"20px"} height={"20px"}/>
                                                         {s.sport.toString()}

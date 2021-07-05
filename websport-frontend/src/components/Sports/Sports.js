@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {sports} from "../../constants";
+import {sports} from "../../constants/constants";
 import "./Sport.css";
 import {useHistory} from "react-router";
 
@@ -25,7 +25,7 @@ const Sports = (props) => {
                                 onMouseOut={(el) => {
                                     el.target.classList.toggle("sport-hover-icon")
                                 }}
-                                className={"rounded-3"} src={"images/sports/" + s.imagePath} alt={"img"}
+                                className={"rounded-3"} src={"images/sports/" + s.imageName} alt={"img"}
                                 width={"100px"} height={"100px"}/><br/>
                             {s.sport.toString()}
                         </div>

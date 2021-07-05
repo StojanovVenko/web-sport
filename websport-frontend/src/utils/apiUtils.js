@@ -1,4 +1,3 @@
-import { ACCESS_TOKEN } from '../constants';
 import axios from "../custom-axios/axios";
 
 const apiUtils = {
