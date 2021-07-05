@@ -61,10 +61,11 @@ class App extends React.Component {
     selectSport = (sport) => {
         sportsService.getSport(sport.URI)
             .then(response => {
-
+                console.log(response.data);
+                this.setState({ currSport: response.data});
             })
             .catch(err => {
-
+                console.log("Err ", err.message)
             });
         this.setState({selectedSport: sport});
     }
@@ -132,7 +133,7 @@ class App extends React.Component {
                             category={categories.sports}
                             sport={this.state.selectedSport}
                             selectSport={this.selectSport}/>
-                    <SportDetails />
+                    <SportDetails sport={this.state.currSport} />
                 </Route>
                 <Route path={"/sports"} >
                     <Header closeNav={this.closeNav}
