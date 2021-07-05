@@ -18,7 +18,7 @@ public class SportController {
     }
 
     @GetMapping("/search")
-    public Sport getSportInfo(@RequestParam("sport") String sportName) {
-        return this.sportService.getSportInfo(WordUtils.capitalizeFully(sportName));
+    public Sport getSportInfo(@RequestParam("sport") String sportURI) {
+        return this.sportService.getSportInfo(sportURI);
     }
 }

@@ -17,9 +17,7 @@ public class SportServiceImpl implements SportService {
     }
 
     @Override
-    public Sport getSportInfo(String sportName) {
-        String sportURI = this.assetsRepository.createEntityIdentifier(sportName);
-
+    public Sport getSportInfo(String sportURI) {
         Sport sport = new Sport();
         this.sportReposiotry.addSportBaseInfo(sportURI, sport);
         this.sportReposiotry.addSportPlayers(sportURI, sport);
