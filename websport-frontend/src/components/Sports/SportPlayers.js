@@ -1,8 +1,11 @@
 import React, {useState} from "react";
 import Pagination from "../Pagination/pagination";
+import PlayerDetails from "../PlayerDetails/PlayerDetails";
 
 const SportPlayers = (props) => {
+    const [showDetails, setShowDetails] = useState(false);
     const [players, setPlayers] = useState(props.players.slice(0, 8));
+    const [currPlayer, setCurrPlayer] = useState();
     const [pagination, setPagination] = useState({
         page:0,
         pageSize: 8,
@@ -10,17 +13,24 @@ const SportPlayers = (props) => {
     });
 
     const getNewPage = (e) => {
-        console.log("ssssssssssss", e, pagination)
         setPlayers(props.players.slice(e.selected * pagination.pageSize, e.selected * pagination.pageSize + pagination.pageSize))
         setPagination({
             page: e.selected,
             pageSize: pagination.pageSize,
             totalPages: pagination.totalPages
         });
-        console.log(players, pagination)
     }
 
-    return <div className={"row"}>
+    if(showDetails) return <div id={"pdis"} className={"row "}>
+        <hr/>
+        <PlayerDetails player={currPlayer}/>
+        <a onClick={() => setShowDetails(false)}
+                className={"btn btn-ws w-75 ml-auto mr-auto"}
+                href={"#sp"}>Back</a>
+        <hr/>
+    </div>
+
+    return <div id={"sp"} className={"row"}>
         <hr/>
         {pagination.totalPages > 1 && <Pagination
             page={pagination.page}
@@ -42,7 +52,12 @@ const SportPlayers = (props) => {
                         <p className="card-text text-dark">{p.description && p.description.substr(0, 120)}</p>
                     </div>
                     <div className={"card-footer"}>
-                        <a href="#" className="btn btn-outline-ws">Read more</a>
+                        <a onClick={() => {
+                            setCurrPlayer(p);
+                            setShowDetails(true);
+                        }}
+                           href={"#pdis"}
+                           className="btn btn-outline-ws">Read more</a>
                     </div>
                 </div>
             </div>

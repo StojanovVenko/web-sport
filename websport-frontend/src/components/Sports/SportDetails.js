@@ -7,6 +7,10 @@ const SportDetails = (props) => {
     </div>
 
     const sport = props.sport;
+    const sportImageURL = sport.thumbnail ?
+        sport.thumbnail :
+        props.image;
+
 
     return (<div className={"container text-light rounded-3 pd-container my-3 mx-auto"}>
         {sport.thumbnail && <img src={sport.thumbnail} style={{width: "100%", height: "400px"}}/>}

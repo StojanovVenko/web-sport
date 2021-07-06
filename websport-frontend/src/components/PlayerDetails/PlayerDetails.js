@@ -23,7 +23,7 @@ const PlayerDetails = (props) => {
                                 className="rounded-pill mx-auto player-image"
                                 style={{height: "300px", width: "300px"}}
                                 alt={props.player.name}
-                                src={props.player.thumbnail ? props.player.thumbnail : "images/user.png"}
+                                src={props.player.thumbnail ? props.player.thumbnail : "/images/user.png"}
                             />
                         </a>
                         <h3 className={"text-light pb-0"}><b>{props.player.fullName}</b></h3>

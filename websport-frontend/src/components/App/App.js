@@ -8,7 +8,7 @@ import PlayersService from "../../service/playersService";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Sports from "../Sports/Sports";
-import {categories} from "../../constants/constants";
+import {categories, sports} from "../../constants/constants";
 import SportDetails from "../Sports/SportDetails";
 import sportsService from "../../service/sportsService";
 import Loader from "../Loader/Loader";
@@ -137,7 +137,7 @@ class App extends React.Component {
                             sport={this.state.selectedSport}
                             selectSport={this.selectSport}/>
                     {this.state.isLoading && <Loader/>}
-                    {this.state.isLoading || <SportDetails sport={this.state.currSport} />}
+                    {this.state.isLoading || <SportDetails sport={this.state.currSport}/>}
                 </Route>
                 <Route path={"/sports"} >
                     <Header closeNav={this.closeNav}
