@@ -23,6 +23,7 @@ const PlayerDetails = (props) => {
                                 className="rounded-pill mx-auto player-image"
                                 style={{height: "300px", width: "300px"}}
                                 alt={props.player.name}
+                                title={"Show image..."}
                                 src={props.player.thumbnail ? props.player.thumbnail : "/images/user.png"}
                             />
                         </a>
@@ -39,12 +40,12 @@ const PlayerDetails = (props) => {
                     seeMore === true ?
                         <p>
                             {props.player.description}
-                            <span className="btn btn-link" onClick={() => setSeeMore(!seeMore)}>... See less</span>
+                            <span className="btn btn-link fa fa-angle-up" onClick={() => setSeeMore(!seeMore)}> See less</span>
                         </p>
                     :
                         <p>
                             {props.player.description.substr(0, 1500)}
-                            <span className="btn btn-link" onClick={() => setSeeMore(!seeMore)}>... See more</span>
+                            <span className="btn btn-link fa fa-angle-down" onClick={() => setSeeMore(!seeMore)}> See more</span>
                         </p>
                 }
 
