@@ -1,4 +1,5 @@
 import React from "react";
+import SportPlayers from "./SportPlayers";
 
 const SportDetails = (props) => {
     if (props.sport === null) return <div>
@@ -14,19 +15,7 @@ const SportDetails = (props) => {
         {sport.description && <div>Description: <b>{sport.description}</b></div>}
         {sport.comment && <div>Comment: <b>{sport.comment}</b></div>}
         {sport.sportGoverningBody && <div>Sport governing body: <b>{sport.sportGoverningBody}</b></div>}
-
-        {sport.players && <ul>
-            {sport.players.map(p => {
-                return <li>
-                    <a href={p.thumbnail} target={"_blank"}><img src={p.thumbnail}
-                                                                 style={{width: "100px", height: "100px"}}/>
-                    </a> {p.name} ({p.fullName}) Height: {p.height}
-                    <br/>
-                    {p.description}
-                    <hr/>
-                </li>
-            })}
-                </ul>}
+        {sport.players && <SportPlayers players={sport.players}/>}
         </div>);
         };
 

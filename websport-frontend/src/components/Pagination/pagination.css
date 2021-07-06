@@ -1,0 +1,13 @@
+.pagination-selected-item {
+    background-color: rgb(242, 101, 34) !important;
+
+}
+
+.page-item a {
+    color:black !important;
+}
+
+.pagination-selected-item a{
+    background-color: rgb(242, 101, 34) !important;
+    color:white !important;
+}
