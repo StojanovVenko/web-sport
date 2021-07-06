@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +21,5 @@ public class Sport {
     String thumbnail;
     String sportGoverningBody;
 
-    List<Player> players = new ArrayList<>();
+    Set<Player> players = new TreeSet<Player>();
 }
