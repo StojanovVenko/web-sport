@@ -20,10 +20,10 @@ const PlayerDetails = (props) => {
                     <div className={"mt-4"}>
                         <a href={props.player.thumbnail} target={"_blank"}>
                             <img
-                                className="rounded-pill mx-auto"
+                                className="rounded-pill mx-auto player-image"
                                 style={{height: "300px", width: "300px"}}
                                 alt={props.player.name}
-                                src={props.player.thumbnail}
+                                src={props.player.thumbnail ? props.player.thumbnail : "images/user.png"}
                             />
                         </a>
                         <h3 className={"text-light pb-0"}><b>{props.player.fullName}</b></h3>
@@ -43,7 +43,7 @@ const PlayerDetails = (props) => {
                         </p>
                     :
                         <p>
-                            {props.player.description.substr(0, 2000)}
+                            {props.player.description.substr(0, 1500)}
                             <span className="btn btn-link" onClick={() => setSeeMore(!seeMore)}>... See more</span>
                         </p>
                 }

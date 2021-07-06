@@ -1,21 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {useHistory, Route, Switch, withRouter, Redirect} from "react-router";
+import React from "react";
+import {Redirect, Route, Switch} from "react-router";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import Players from "../Players/Players";
 import PlayerDetails from "../PlayerDetails/PlayerDetails";
 import PlayersService from "../../service/playersService";
 import Footer from "../Footer/Footer";
-import Carousel1 from "../Carousel1/Carousel1";
-import Carousel2 from "../Carousel2/Carousel2";
-import HeaderSectionTop from "../Header/HeaderSectionTop";
-import HeaderSectionSearch from "../Header/HeaderSectionSearch";
 import Header from "../Header/Header";
 import Sports from "../Sports/Sports";
 import {categories} from "../../constants/constants";
 import SportDetails from "../Sports/SportDetails";
 import sportsService from "../../service/sportsService";
+import Loader from "../Loader/Loader";
 
 class App extends React.Component {
 
@@ -23,6 +19,8 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            isLoading: false,
+
             currPlayer: [],
             currSport: null,
 
@@ -33,12 +31,14 @@ class App extends React.Component {
     // const [searchPlayer, setSearchPlayer] = useState("");
 
     getPlayerDetails = (name) => {
+        this.setState({ isLoading: true });
         PlayersService.getPlayer(name)
             .then(response => {
-                this.setState({currPlayer: response.data});
+                this.setState({currPlayer: response.data, isLoading: false});
                 console.log(response.data);
             }).catch(err => {
             console.log("Error in Players component!");
+            this.setState({ isLoading: false });
         });
     }
     // useEffect(() => {
@@ -59,15 +59,17 @@ class App extends React.Component {
     }
 
     selectSport = (sport) => {
+        this.setState({ isLoading: true, selectedSport: sport });
         sportsService.getSport(sport.URI)
             .then(response => {
                 console.log(response.data);
-                this.setState({ currSport: response.data});
+                this.setState({ currSport: response.data, isLoading: false});
             })
             .catch(err => {
                 console.log("Err ", err.message)
+                this.setState({ isLoading: false });
             });
-        this.setState({selectedSport: sport});
+        // this.setState({selectedSport: sport});
     }
 
     render() {
@@ -115,7 +117,8 @@ class App extends React.Component {
                             openNav={this.openNav}
                             getPlayerDetails={this.getPlayerDetails}
                             category={categories.players}/>
-                    <PlayerDetails player={this.state.currPlayer}/>
+                    {this.state.isLoading && <Loader/>}
+                    {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}/>}
                 </Route>
                 <Route path={"/teams"} exact>
                     <Header closeNav={this.closeNav}
@@ -133,7 +136,8 @@ class App extends React.Component {
                             category={categories.sports}
                             sport={this.state.selectedSport}
                             selectSport={this.selectSport}/>
-                    <SportDetails sport={this.state.currSport} />
+                    {this.state.isLoading && <Loader/>}
+                    {this.state.isLoading || <SportDetails sport={this.state.currSport} />}
                 </Route>
                 <Route path={"/sports"} >
                     <Header closeNav={this.closeNav}

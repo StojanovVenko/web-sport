@@ -5,3 +5,7 @@
     /*position:relative;*/
     /*z-index: 1;*/
 }
+
+.player-image {
+    border: 2px solid rgb(242, 101, 34);
+}
