@@ -11,17 +11,21 @@ import java.text.SimpleDateFormat;
 public class Utils {
 
     public static void addPlayerBaseInfo(Player player, QuerySolution qs) {
-        player.setName(qs.get("name") != null ? qs.get("name").asLiteral().getLexicalForm() : null);
-        player.setFullName(qs.get("fullName") != null ? qs.get("fullName").asLiteral().getLexicalForm() : null);
+        player.setName(qs.get("name") != null && qs.get("name").isLiteral() ? qs.get("name").asLiteral().getLexicalForm() : null);
+        player.setFullName(qs.get("fullName") != null && qs.get("fullName").isLiteral() ? qs.get("fullName").asLiteral().getLexicalForm() : null);
         player.setHeight(qs.get("height") != null ? qs.get("height").asLiteral().getDouble() : null);
         player.setThumbnail(qs.get("thumbnail") != null ? qs.get("thumbnail").toString() : null);
-        player.setDescription(qs.get("abstract") != null ? qs.get("abstract").asLiteral().getLexicalForm() : null);
-        player.setComment(qs.get("comment") != null ? qs.get("comment").asLiteral().getLexicalForm() : null);
+        player.setDescription(qs.get("abstract") != null && qs.get("abstract").isLiteral() ? qs.get("abstract").asLiteral().getLexicalForm() : null);
+        player.setComment(qs.get("comment") != null && qs.get("comment").isLiteral() ? qs.get("comment").asLiteral().getLexicalForm() : null);
         player.setBirthPlace(qs.get("birthPlace") != null ? qs.get("birthPlace").toString() : null);
         try {
-            player.setBirthDate(qs.get("birthDate") != null ? new SimpleDateFormat("yyyy-MM-dd").parse(
-                    qs.get("birthDate").asLiteral().getLexicalForm()) : null);
+            player.setBirthDate((qs.get("birthDate") != null && qs.get("birthDate").isLiteral()) ?
+                    new SimpleDateFormat("yyyy-MM-dd").parse(
+                            qs.get("birthDate").asLiteral().toString()
+                    ) : null);
         } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
