@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,7 +32,8 @@ public class Team {
     String clubName;
     String fullName;
 
-    List<String> nicknames = new ArrayList<String>();
+    List<String> nicknames = new ArrayList<>();
+    Set<Player> players = new TreeSet<>();
 
     // igracite koi se u ovaj tim (dbp:club, dbp:clubs i dbo:team)
 

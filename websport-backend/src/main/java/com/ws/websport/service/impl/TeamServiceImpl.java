@@ -24,6 +24,7 @@ public class TeamServiceImpl implements TeamService {
         this.teamRepository.addTeamBaseInfo(teamURI, team);
         this.teamRepository.addTeamStaffMembers(teamURI, team);
         this.teamRepository.addTeamNicknames(teamURI, team);
+        this.teamRepository.addTeamPlayers(teamURI, team);
         return team;
     }
 }

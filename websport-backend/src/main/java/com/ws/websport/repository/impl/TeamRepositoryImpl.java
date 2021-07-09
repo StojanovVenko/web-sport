@@ -6,6 +6,7 @@ import com.ws.websport.utils.Utils;
 import org.apache.jena.query.*;
 import org.springframework.stereotype.Repository;
 import com.ws.websport.assets.JenaAssets;
+import com.ws.websport.model.Player;
 
 @Repository
 public class TeamRepositoryImpl implements TeamRepository {
@@ -112,6 +113,42 @@ public class TeamRepositoryImpl implements TeamRepository {
                 ) {
                     team.getNicknames().add(sln.getLiteral("nickname").getLexicalForm());
                 }
+            }
+        }
+    }
+
+    @Override
+public void addTeamPlayers(String teamURI, Team team) {
+        String queryTeamPlayers = "prefix dbp: <http://dbpedia.org/property/> " +
+                "prefix dbo: <http://dbpedia.org/ontology/> " +
+                "prefix dbr: <http://dbpedia.org/resource/> " +
+                "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+                "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+                "SELECT DISTINCT " +
+                "    ?player ?name ?fullName ?height ?thumbnail " +
+                "    ?abstract ?comment ?birthDate ?birthPlace " +
+                " WHERE { " +
+                "    ?player dbp:clubs dbr:FC_Barcelona; " +
+                "        rdf:type dbo:Person . " +
+                "    OPTIONAL { ?player dbp:name ?name. } " +
+                "    OPTIONAL { ?player dbp:fullname ?fullName. } " +
+                "    OPTIONAL { ?player dbo:height ?height. } " +
+                "    OPTIONAL { ?player dbo:thumbnail ?thumbnail. } " +
+                "    OPTIONAL { ?player dbo:abstract ?abstract. } " +
+                "    OPTIONAL { ?player rdfs:comment ?comment. } " +
+                "    OPTIONAL { ?player dbo:birthDate ?birthDate. } " +
+                "    OPTIONAL { ?player dbp:birthPlace ?birthPlace. } " +
+                "    FILTER (lang(?abstract) = \"en\" && lang(?comment) =\"en\") " +
+                "} ";
+
+        Query query = QueryFactory.create(queryTeamPlayers);
+
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(JenaAssets.SPARQLEndpoint, query)) {
+            ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                Player player = new Player();
+                Utils.addPlayerBaseInfo(player, resultSet.nextSolution());
+                team.getPlayers().add(player);
             }
         }
     }

@@ -33,14 +33,14 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
+        if(this.thumbnail != null ) {
+            return -1;
+        }
         if(this.fullName != null && o.fullName != null) {
             return this.fullName.compareTo(o.fullName);
         }
         if(this.name != null && o.name != null) {
             return this.name.compareTo(o.name);
-        }
-        if(this.thumbnail != null && o.thumbnail != null) {
-            return this.thumbnail.compareTo(o.thumbnail);
         }
         if(this.description != null && o.description != null) {
             return this.description.compareTo(o.description);

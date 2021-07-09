@@ -10,4 +10,5 @@ public interface TeamRepository {
 
     void addTeamNicknames(String teamURI, Team team);
 
+    void addTeamPlayers(String teamURI, Team team);
 }
