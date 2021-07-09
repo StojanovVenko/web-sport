@@ -2,11 +2,13 @@ package com.ws.websport.utils;
 
 import com.ws.websport.model.Player;
 import com.ws.websport.model.Sport;
+import com.ws.websport.model.Team;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utils {
 
@@ -31,7 +33,7 @@ public class Utils {
     }
 
     public static void addPlayerQuotes(Player player, ResultSet resultSet) {
-        while(resultSet.hasNext()) {
+        while (resultSet.hasNext()) {
             QuerySolution qs = resultSet.nextSolution();
             player.getPlayerQuotes().add(qs.get("quote").asLiteral().getLexicalForm());
         }
@@ -46,11 +48,49 @@ public class Utils {
     }
 
     public static void addSportPlayers(Sport sport, ResultSet resultSet) {
-        while(resultSet.hasNext()) {
+        while (resultSet.hasNext()) {
             QuerySolution qs = resultSet.nextSolution();
             Player player = new Player();
             addPlayerBaseInfo(player, qs);
             sport.getPlayers().add(player);
         }
+    }
+
+    public static void addTeamBaseInfo(Team team, QuerySolution qs) {
+        if (qs.contains("label") && qs.get("label") != null && qs.get("label").isLiteral())
+            team.setLabel(qs.get("label").asLiteral().getLexicalForm());
+        if (qs.contains("abstract") && qs.get("abstract") != null && qs.get("abstract").isLiteral())
+            team.setDescription(qs.get("abstract").asLiteral().getLexicalForm());
+        if (qs.contains("fullName") && qs.get("fullName") != null && qs.get("fullName").isLiteral())
+            team.setFullName(qs.get("fullName").asLiteral().getLexicalForm());
+        if (qs.contains("clubName") && qs.get("clubName") != null && qs.get("clubName").isLiteral())
+            team.setClubName(qs.get("clubName").asLiteral().getLexicalForm());
+        try {
+            if (qs.contains("formationDate") && qs.get("formationDate") != null && qs.get("formationDate").isLiteral())
+                team.setFormationDate(new SimpleDateFormat("yyyy-MM-dd").parse(
+                        qs.get("formationDate").asLiteral().toString()
+                ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addTeamStaffMembers(Team team, QuerySolution qs) {
+        if(qs.contains("managerTitle") && qs.get("managerTitle") != null && qs.get("managerTitle").isLiteral())
+            team.setManagerTitle(qs.getLiteral("managerTitle").getLexicalForm());
+        if(qs.contains("managerFullName") && qs.get("managerFullName") != null && qs.get("managerFullName").isLiteral())
+            team.setManagerName(qs.getLiteral("managerFullName").getLexicalForm());
+        if(qs.contains("managerAbstract") && qs.get("managerAbstract") != null && qs.get("managerAbstract").isLiteral())
+            team.setManagerDescription(qs.getLiteral("managerAbstract").getLexicalForm());
+        if(qs.contains("groundFullName") && qs.get("groundFullName") != null && qs.get("groundFullName").isLiteral())
+            team.setGroundName(qs.getLiteral("groundFullName").getLexicalForm());
+        if(qs.contains("groundAbstract") && qs.get("groundAbstract") != null && qs.get("groundAbstract").isLiteral())
+            team.setGroundDescription(qs.getLiteral("groundAbstract").getLexicalForm());
+        if(qs.contains("chairmanTitle") && qs.get("chairmanTitle") != null && qs.get("chairmanTitle").isLiteral())
+            team.setChairmanTitle(qs.getLiteral("chairmanTitle").getLexicalForm());
+        if(qs.contains("chairmanFullName") && qs.get("chairmanFullName") != null && qs.get("chairmanFullName").isLiteral())
+            team.setChairmanName(qs.getLiteral("chairmanFullName").getLexicalForm());
+        if(qs.contains("chairmanAbstract") && qs.get("chairmanAbstract") != null && qs.get("chairmanAbstract").isLiteral())
+            team.setChairmanDescription(qs.getLiteral("chairmanAbstract").getLexicalForm());
     }
 }

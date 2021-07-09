@@ -1,0 +1,9 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbr: <http://dbpedia.org/resource/>
+
+SELECT DISTINCT
+    ?nickname
+WHERE {
+    dbr:FC_Barcelona dbp:nickname ?nickname .
+    FILTER(lang(?nickname) = "en")
+}

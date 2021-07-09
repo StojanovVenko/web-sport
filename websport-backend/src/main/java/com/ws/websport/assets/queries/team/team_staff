@@ -1,0 +1,34 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT
+    ?managerTitle ?managerFullName ?managerAbstract
+    ?groundFullName ?groundAbstract
+    ?chairmanTitle ?chairmanFullName ?chairmanAbstract
+ WHERE {
+     OPTIONAL { dbr:FC_Barcelona dbo:managerTitle ?managerTitle . }
+     OPTIONAL {
+        dbr:FC_Barcelona dbo:manager ?manager .
+            ?manager dbo:abstract ?managerAbstract ;
+                dbp:name ?managerFullName .
+    }
+     OPTIONAL {
+        dbr:FC_Barcelona dbo:ground ?ground .
+            ?ground dbp:fullname ?groundFullName;
+                dbo:abstract ?groundAbstract .
+        filter(lang(?groundAbstract) = "en")
+    }
+     OPTIONAL { dbr:FC_Barcelona dbo:chairmanTitle ?chairmanTitle . }
+     OPTIONAL {
+        dbr:FC_Barcelona dbo:chairman ?chairman .
+        ?chairman dbo:abstract ?chairmanAbstract;
+            dbp:name ?chairmanFullName .
+    }
+    FILTER(
+        lang(?managerFullName) = "en" &&
+        lang(?managerAbstract) = "en" &&
+        lang(?chairmanAbstract) = "en"
+       )
+}

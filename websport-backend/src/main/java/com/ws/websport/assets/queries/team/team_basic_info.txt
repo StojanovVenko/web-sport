@@ -1,0 +1,20 @@
+prefix dbp: <http://dbpedia.org/property/>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT
+    ?label ?abstract ?formationDate ?fullName ?clubName
+ WHERE {
+     OPTIONAL { dbr:FC_Barcelona rdfs:label ?label . }
+     OPTIONAL { dbr:FC_Barcelona dbo:abstract ?abstract . }
+     OPTIONAL { dbr:FC_Barcelona dbo:formationDate ?formationDate . }
+     OPTIONAL { dbr:FC_Barcelona dbp:fullname ?fullName . }
+     OPTIONAL { dbr:FC_Barcelona dbp:clubname ?clubName . }
+    FILTER(
+        lang(?label) = "en" &&
+        lang(?abstract) = "en" &&
+        lang(?fullName) = "en" &&
+        lang(?clubName) = "en"
+    )
+}
