@@ -8,4 +8,6 @@ public interface PlayerRepository {
     void addPlayerBaseInfo(String uri, Player player) throws PlayerNotFoundException;
 
     void addPlayerQuotes(String uri, Player player);
+
+    void addPlayerTeams(String uri, Player player);
 }

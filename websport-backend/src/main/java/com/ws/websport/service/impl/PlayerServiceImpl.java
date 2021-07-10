@@ -25,6 +25,7 @@ public class PlayerServiceImpl implements PlayerService {
         Player player = new Player();
         this.playerRepository.addPlayerBaseInfo(uri, player);
         this.playerRepository.addPlayerQuotes(uri, player);
+        this.playerRepository.addPlayerTeams(uri, player);
         return player;
     }
 }

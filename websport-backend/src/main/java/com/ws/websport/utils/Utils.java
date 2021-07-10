@@ -3,6 +3,7 @@ package com.ws.websport.utils;
 import com.ws.websport.model.Player;
 import com.ws.websport.model.Sport;
 import com.ws.websport.model.Team;
+import com.ws.websport.model.dto.PlayerTeamDTO;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
@@ -36,6 +37,24 @@ public class Utils {
         while (resultSet.hasNext()) {
             QuerySolution qs = resultSet.nextSolution();
             player.getPlayerQuotes().add(qs.get("quote").asLiteral().getLexicalForm());
+        }
+    }
+
+    public static void addPlayerTeams(Player player, ResultSet resultSet) {
+        while(resultSet.hasNext()) {
+            QuerySolution qs = resultSet.nextSolution();
+            String uri = null,
+                    description = null,
+                    label = null;
+
+            if(qs.contains("team") && qs.get("team") != null)
+                uri = qs.getResource("team").toString();
+            if(qs.contains("label") && qs.get("label") != null && qs.get("label").isLiteral())
+                label = qs.getLiteral("label").getLexicalForm();
+            if(qs.contains("abstract") && qs.get("abstract") != null && qs.get("abstract").isLiteral())
+                description = qs.getLiteral("abstract").getLexicalForm();
+
+            player.getTeams().add(new PlayerTeamDTO(uri, label, description));
         }
     }
 

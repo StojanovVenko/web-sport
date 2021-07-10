@@ -106,7 +106,7 @@ public class TeamRepositoryImpl implements TeamRepository {
             ResultSet resultSet = queryExecution.execSelect();
             while (resultSet.hasNext()) {
                 QuerySolution sln = resultSet.nextSolution();
-                if(sln.contains("nickname") &&
+                if (sln.contains("nickname") &&
                         sln.get("nickname") != null &&
                         sln.get("nickname").isLiteral() &&
                         sln.getLiteral("nickname").getLexicalForm().trim().length() > 0
@@ -118,7 +118,7 @@ public class TeamRepositoryImpl implements TeamRepository {
     }
 
     @Override
-public void addTeamPlayers(String teamURI, Team team) {
+    public void addTeamPlayers(String teamURI, Team team) {
         String queryTeamPlayers = "prefix dbp: <http://dbpedia.org/property/> " +
                 "prefix dbo: <http://dbpedia.org/ontology/> " +
                 "prefix dbr: <http://dbpedia.org/resource/> " +

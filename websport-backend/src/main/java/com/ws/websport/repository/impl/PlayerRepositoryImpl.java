@@ -8,6 +8,7 @@ import com.ws.websport.utils.Utils;
 import org.apache.jena.query.*;
 import org.springframework.stereotype.Repository;
 
+import java.awt.desktop.QuitResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -59,6 +60,31 @@ public class PlayerRepositoryImpl implements PlayerRepository {
                 Utils.addPlayerQuotes(player, resultSet);
             }
         }
+    }
+
+    @Override
+    public void addPlayerTeams(String uri, Player player) {
+        String queryPlayerTeam = "prefix dbo: <http://dbpedia.org/ontology/> " +
+                "prefix dbr: <http://dbpedia.org/resource/> " +
+                "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+                "SELECT ?team ?label ?abstract " +
+                "WHERE { " +
+                "    <" + uri + "> dbo:team ?team . " +
+                "    ?team rdfs:label ?label; " +
+                "        dbo:abstract ?abstract . " +
+                "    FILTER ( " +
+                "        lang(?abstract) = \"en\" && " +
+                "        lang(?label) = \"en\" " +
+                "    ) " +
+                "}";
+
+        Query query = QueryFactory.create(queryPlayerTeam);
+
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(JenaAssets.SPARQLEndpoint, query)) {
+            ResultSet resultSet = queryExecution.execSelect();
+                Utils.addPlayerTeams(player, resultSet);
+        }
+
     }
 
 }

@@ -1,12 +1,12 @@
 package com.ws.websport.model;
 
+import com.ws.websport.model.dto.PlayerTeamDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class Player implements Comparable<Player> {
     String deathPlace;
 
     List<String> playerQuotes = new ArrayList<>();
+    List<PlayerTeamDTO> teams = new ArrayList<>();
 
     @Override
     public int compareTo(Player o) {
