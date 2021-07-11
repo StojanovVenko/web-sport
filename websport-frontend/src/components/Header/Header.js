@@ -15,7 +15,8 @@ const Header = (props) => {
                                  category={props.category}
                                  value={props.value}
                                  sport={props.sport}
-                                 selectSport={props.selectSport}/>
+                                 selectSport={props.selectSport}
+                                 getTeamDetails={props.getTeamDetails}/>
         </div>
     );
 }

@@ -20,6 +20,7 @@ public class Sport {
     String description;
     String thumbnail;
     String sportGoverningBody;
+    String sportGoverningBodyDescription;
 
     Set<Player> players = new TreeSet<Player>();
 }

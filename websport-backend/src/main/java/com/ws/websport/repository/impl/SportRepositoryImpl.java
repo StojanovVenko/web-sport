@@ -22,8 +22,9 @@ public class SportRepositoryImpl implements SportReposiotry {
                 "     OPTIONAL { dbr:" + sportURI + " dbo:abstract ?abstract. } " +
                 "     OPTIONAL { dbr:" + sportURI + " dbo:comment ?comment. } " +
                 "     OPTIONAL { dbr:" + sportURI + " dbo:thumbnail ?thumbnail . } " +
-                "     OPTIONAL { dbr:" + sportURI + " dbo:sportGoverningBody ?federation . } " +
-                "FILTER (lang(?abstract) = \"en\" && lang(?label) = \"en\") " +
+                "     OPTIONAL { dbr:" + sportURI + " dbo:sportGoverningBody ?federation . " +
+                "?federation dbo:abbreviation ?abbreviation; dbo:abstract ?federationAbstract .} " +
+                "FILTER (lang(?abstract) = \"en\" && lang(?label) = \"en\" && lang(?federationAbstract) = \"en\")" +
                 "}";
 
         Query query = QueryFactory.create(querySportBaseInfo);

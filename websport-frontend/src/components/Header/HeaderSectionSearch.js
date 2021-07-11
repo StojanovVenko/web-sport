@@ -47,7 +47,8 @@ const HeaderSectionSearch = (props) => {
             return;
         }
         if (category === categories.teams) {
-            return;
+            props.getTeamDetails(searchTeam);
+            history.push("/teams");
         }
         if (category === categories.sports) {
         }

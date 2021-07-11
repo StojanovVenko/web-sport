@@ -7,6 +7,8 @@ SELECT * where {
      OPTIONAL { dbr:Table_tennis dbo:abstract ?abstract. }
      OPTIONAL { dbr:Table_tennis dbo:comment ?comment. }
      OPTIONAL { dbr:Table_tennis dbo:thumbnail ?thumbnail . }
-     OPTIONAL { dbr:Table_tennis dbo:sportGoverningBody ?federation . }
-	FILTER (lang(?abstract) = "en" && lang(?label) = "en")
+     OPTIONAL { dbr:Table_tennis dbo:sportGoverningBody ?federation .
+        ?federation dbo:abbreviation ?abbreviation;
+            dbo:abstract ?federationAbstract .}
+	FILTER (lang(?abstract) = "en" && lang(?label) = "en" && lang(?federationAbstract) = "en")
 }

@@ -30,6 +30,8 @@ public class PlayerRepositoryImpl implements PlayerRepository {
                 "OPTIONAL { <" + uri + "> rdfs:comment ?comment. } " +
                 "OPTIONAL { <" + uri + "> dbo:birthDate ?birthDate. } " +
                 "OPTIONAL { <" + uri + "> dbp:birthPlace ?birthPlace. } " +
+                "OPTIONAL { <" + uri + "> dbo:deathPlace ?deathPlace. } " +
+                "OPTIONAL { <" + uri + "> dbp:deathDate ?deathDate. } " +
                 "FILTER (lang(?abstract) = \"en\" && lang(?comment) = \"en\") " +
                 "}";
 

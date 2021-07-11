@@ -4,52 +4,54 @@ import {withRouter} from "react-router";
 import Quotes from "./Quotes/Quotes";
 
 const PlayerDetails = (props) => {
+    const player = props.player;
 
     const [seeMore, setSeeMore] = useState(false);
 
-    if (props.player === null || props.player.length) return (<div className={"pd-container"}>Player not found</div>)
+    if (player === null || player.length) return (<div className={"pd-container"}>Player not found</div>)
 
-    function getDate(date) {
+    const getDate = (date) => {
         return new Date(date)
     }
 
     return (
-        props.player.length !== 0 ?
+        player.length !== 0 ?
             <div className="container text-light rounded-3 pd-container my-3 mx-auto" style={{opacity: "0.8"}}>
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4"}>
-                        <a href={props.player.thumbnail} target={"_blank"}>
+                        <a href={player.thumbnail} target={"_blank"}>
                             <img
                                 className="rounded-pill mx-auto player-image"
                                 style={{height: "300px", width: "300px"}}
-                                alt={props.player.name}
+                                alt={player.name}
                                 title={"Show image..."}
-                                src={props.player.thumbnail ? props.player.thumbnail : "/images/user.png"}
+                                src={player.thumbnail ? player.thumbnail : "/images/user.png"}
                             />
                         </a>
-                        <h3 className={"text-light pb-0"}><b>{props.player.fullName}</b></h3>
-                        <h4 className={"text-light py-0"}>({props.player.name})</h4>
+                        {player.fullName && <h3 className={"text-light pb-0"}><b>{player.fullName}</b></h3>}
+                        {player.name && <h4 className={"text-light py-0"}>({player.name})</h4>}
                     </div>
                 </div>
 
                 <div className={"col-12 p-2"}>
-                    Height: <b>{props.player.height}m</b><br/>
-                    Born: <b>{props.player.birthPlace}, {getDate(props.player.birthDate).toDateString()}</b>
+                    {player.height && <>Height: <b>{player.height}m</b><br/></>}
+                    {player.birthPlace && <>Born: <b>{player.birthPlace}, {getDate(player.birthDate).toDateString()}</b><br/> </>}
+                    {player.deathPlace && <>Death: <b>{player.deathPlace}, {getDate(player.deathDate).toDateString()}</b><br/> </>}
                 </div>
                 {
                     seeMore === true ?
-                        <p>
-                            {props.player.description}
+                        player.description && <p>
+                            {player.description}
                             <span className="btn btn-link fa fa-angle-up" onClick={() => setSeeMore(!seeMore)}> See less</span>
                         </p>
                     :
-                        <p>
-                            {props.player.description.substr(0, 1500)}
+                        player.description && <p>
+                            {player.description.substr(0, 1500)}
                             <span className="btn btn-link fa fa-angle-down" onClick={() => setSeeMore(!seeMore)}> See more</span>
                         </p>
                 }
 
-                <Quotes quotes={props.player.playerQuotes}/>
+                <Quotes quotes={player.playerQuotes}/>
             </div>
             :
             <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import SportPlayers from "./SportPlayers";
 
 const SportDetails = (props) => {
+    const sport = props.sport;
 
     const [seeMore, setSeeMore] = useState(false);
 
 
-    if (props.sport === null) return <div>
+    if (sport === null) return <div>
         You need to select sport!
     </div>
 
-    const sport = props.sport;
     const sportImageURL = sport.thumbnail ?
         sport.thumbnail :
         props.image;
@@ -19,7 +19,7 @@ const SportDetails = (props) => {
     return (<div className={"container text-light row rounded-3 pd-container my-3 mx-auto"}>
         <div className={"col-12 text-center d-flex justify-content-center my-2"}>
             <div>
-                <h3 className={"text-light pb-0 my-2"}><b className={"border-bottom border-danger border-3 text-success"}>{sport.label.toUpperCase()}</b></h3>
+                {sport.label && <h3 className={"text-light pb-0 my-2"}><b className={"border-bottom border-danger border-3 text-success"}>{sport.label.toUpperCase()}</b></h3>}
                 {sport.thumbnail && <a href={sport.thumbnail} target={"_blank"}>
                     <img
                         className="mx-auto player-image my-1 rounded"
@@ -31,9 +31,6 @@ const SportDetails = (props) => {
                 </a>}
             </div>
         </div>
-        {/*<div className={"col-12 mt-5"}>*/}
-        {/*    <div>Label: <b>{sport.label}</b></div>*/}
-        {/*</div>*/}
         <div className={"col-12 mt-5"}>
             <p>
                 {sport.comment && <div>Comment: <b>{sport.comment}</b></div>}
@@ -60,6 +57,9 @@ const SportDetails = (props) => {
         <div className={"col-12"}>
             <p>
                 {sport.sportGoverningBody && <div>Sport governing body: <span className={"font-weight-bold"}>{sport.sportGoverningBody}</span></div>}
+                {sport.sportGoverningBodyDescription && <div>
+                    Sport governing body description: <span className={"font-weight-bold"}>{sport.sportGoverningBodyDescription}</span>
+                </div>}
             </p>
         </div>
         <div className={"col-12"}>
