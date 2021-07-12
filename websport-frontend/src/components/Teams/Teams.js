@@ -108,7 +108,7 @@ const Teams = (props) => {
             {team.nicknames &&
                 <div className={"row my-1"}>
                     <div className={"col-2 text-ws"}>
-                        Nicknames
+                        Nicknames:
                     </div>
                     <div className={"col-10 font-weight-bold"}>
                         <ul className={"p-0"}>
