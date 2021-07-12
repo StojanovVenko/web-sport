@@ -7,10 +7,13 @@ import SportDetails from "../Sports/SportDetails";
 const Teams = (props) => {
     const team = props.team;
     const getDate = dateUtils.getDate;
+    console.log(team)
 
-    if (team === null) return <div id={"teams"} className={"content_blank"}>
-        <h1>You need to select team</h1>
-    </div>;
+    if (team === null) {
+        return <div id={"teams"} className={"content_blank"}>
+            <h1>You need to select team</h1>
+        </div>;
+    }
 
     return (
         <div id={"teams"} className="container text-light rounded-3 pd-container my-3 mx-auto text-left"
@@ -23,49 +26,104 @@ const Teams = (props) => {
                 </div>
                 <hr/>
             </>}
-            {team.clubName && <div>
-                <span className={"text-ws"}>Clubname:</span> <span className={"font-weight-bold"}>{team.clubName}</span>
-            </div>}
-            {team.fullName && <div><span className={"text-ws"}>
-                Club full name: </span><span className={"font-weight-bold"}>{team.fullName}</span>
-            </div>}
-            {team.description && <><p><span className={"text-ws"}>Descrtiption:</span> <span
-                className={"font-weight-bold"}>{team.description}</span></p>
-                <hr/>
-            </>}
+            {team.clubName &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Clubname:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.clubName}
+                    </div>
+                </div>}
+            {team.fullName &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Club full name:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.fullName}
+                    </div>
+                </div>
+            }
+            {team.description &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Descrtiption:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.description}
+                    </div>
+                </div>
+            }
             {team.formationDate &&
-            <div><span className={"text-ws"}>Formation date:</span> <span
-                className={"font-weight-bold"}> {getDate(team.formationDate).toDateString()}</span></div>}
-            {team.groundName && <div>
-                <span className={"text-ws"}>Ground:</span> <span className={"font-weight-bold"}>{team.groundName}</span>
-            </div>}
-            {team.groundDescription && <div>
-                <span className={"text-ws"}>Ground description:</span> <span
-                className={"font-weight-bold"}>{team.groundDescription}</span>
-            </div>}
-            {team.chairmanName && <div>
-                {team.chairmanTitle ? <span className={"text-ws"}>{team.chairmanTitle}: </span> : "Chairman name: "}
-                <u>{team.chairmanName}</u> <span>{team.chairmanDescription &&
-            <span>( {team.chairmanDescription} )</span>}</span>
-                <hr/>
-            </div>}
-            {team.managerName && <div>
-                {team.managerTitle ? <span className={"text-ws"}>{team.managerTitle}: </span> : "Manager name: "}
-                <u>{team.managerName}</u> <span>{team.managerDescription && <span>( {team.managerDescription} )</span>}
-                <hr/></span>
-            </div>}
-            {team.nicknames && <div><h4 className={"text-ws"}>Nicknames</h4>
-                <ul>
-                    {team.nicknames.map(n => {
-                        return <li>{n}</li>
-                    })}
-                </ul>
-                <hr/>
-            </div>}
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Formation date:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {getDate(team.formationDate).toDateString()}
+                    </div>
+                </div>
+            }
+            {team.groundName &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Ground:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.groundName}
+                    </div>
+                </div>
+            }
+            {team.groundDescription &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Ground description:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.groundDescription}
+                    </div>
+                </div>
+            }
+            {team.chairmanName &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        {team.chairmanTitle ? team.chairmanTitle : "Chairman name: "}
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.chairmanDescription}
+                    </div>
+                </div>
+            }
+            {team.managerName &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        {team.managerTitle ? team.managerTitle : "Manager name: "}
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {team.chairmanDescription}
+                    </div>
+                </div>
+            }
+            {team.nicknames &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Nicknames
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        <ul className={"p-0"}>
+                            {team.nicknames.map(n => {
+                                return <li>{n}</li>
+                            })}
+                        </ul>
+                    </div>
+                </div>
+            }
             {team.players && <PlayersPagination players={team.players}
                                                 getPlayerDetails={props.getPlayerDetails}
                                                 setCategory={props.setCategory}/>}
-        </div>);
+        </div>
+    );
 };
 
 export default Teams;
