@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Pagination from "../Pagination/pagination";
 import PlayerDetails from "../PlayerDetails/PlayerDetails";
 import {useHistory} from "react-router";
@@ -15,6 +15,11 @@ const PlayersPagination = (props) => {
         pageSize: 8,
         totalPages: props.players ? props.players.length / 10 : 0,
     });
+
+    useEffect(() => {
+        console.log("Players", props.players)
+        setPlayers(props.players)
+    }, [props.players])
 
     const getNewPage = (e) => {
         setPlayers(props.players.slice(e.selected * pagination.pageSize, e.selected * pagination.pageSize + pagination.pageSize))

@@ -7,7 +7,6 @@ import SportDetails from "../Sports/SportDetails";
 const Teams = (props) => {
     const team = props.team;
     const getDate = dateUtils.getDate;
-    console.log(team)
 
     if (team === null) {
         return <div id={"teams"} className={"content_blank"}>

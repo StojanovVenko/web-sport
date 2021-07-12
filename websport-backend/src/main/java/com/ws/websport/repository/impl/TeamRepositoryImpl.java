@@ -119,6 +119,7 @@ public class TeamRepositoryImpl implements TeamRepository {
 
     @Override
     public void addTeamPlayers(String teamURI, Team team) {
+        System.out.println(team.getClubName());
         String queryTeamPlayers = "prefix dbp: <http://dbpedia.org/property/> " +
                 "prefix dbo: <http://dbpedia.org/ontology/> " +
                 "prefix dbr: <http://dbpedia.org/resource/> " +
@@ -128,7 +129,7 @@ public class TeamRepositoryImpl implements TeamRepository {
                 "    ?player ?name ?fullName ?height ?thumbnail " +
                 "    ?abstract ?comment ?birthDate ?birthPlace " +
                 " WHERE { " +
-                "    ?player dbp:clubs dbr:FC_Barcelona; " +
+                "    ?player dbp:clubs dbr:" + teamURI.substring(teamURI.lastIndexOf("/") + 1) + "; " +
                 "        rdf:type dbo:Person . " +
                 "    OPTIONAL { ?player dbp:name ?name. } " +
                 "    OPTIONAL { ?player dbp:fullname ?fullName. } " +
