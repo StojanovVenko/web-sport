@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./PlayerDetails.css";
 import {withRouter} from "react-router";
 import Quotes from "./Quotes/Quotes";
+import dateUtils from "../../utils/dateUtils";
 
 const PlayerDetails = (props) => {
     const player = props.player;
@@ -10,9 +11,7 @@ const PlayerDetails = (props) => {
 
     if (player === null || player.length) return (<div className={"pd-container"}>Player not found</div>)
 
-    const getDate = (date) => {
-        return new Date(date)
-    }
+    const getDate = dateUtils.getDate;
 
     return (
         player.length !== 0 ?

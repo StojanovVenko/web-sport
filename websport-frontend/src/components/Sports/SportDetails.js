@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import SportPlayers from "./SportPlayers";
 
 const SportDetails = (props) => {
@@ -19,7 +19,9 @@ const SportDetails = (props) => {
     return (<div className={"container text-light row rounded-3 pd-container my-3 mx-auto"}>
         <div className={"col-12 text-center d-flex justify-content-center my-2"}>
             <div>
-                {sport.label && <h3 className={"text-light pb-0 my-2"}><b className={"border-bottom border-danger border-3 text-success"}>{sport.label.toUpperCase()}</b></h3>}
+                {sport.label && <h3 className={"text-light pb-0 my-2"}><b
+                    className={"border-bottom border-danger border-3 text-success"}>{sport.label.toUpperCase()}</b>
+                </h3>}
                 {sport.thumbnail && <a href={sport.thumbnail} target={"_blank"}>
                     <img
                         className="mx-auto player-image my-1 rounded"
@@ -42,7 +44,8 @@ const SportDetails = (props) => {
                     <p>
                         {sport.description && <div>Description:
                             <span className={"font-weight-bold"}>{sport.description}</span>
-                            <span className="btn btn-link fa fa-angle-up" onClick={() => setSeeMore(!seeMore)}> See less</span>
+                            <span className="btn btn-link fa fa-angle-up"
+                                  onClick={() => setSeeMore(!seeMore)}> See less</span>
                         </div>}
                     </p>
                     :
@@ -56,9 +59,11 @@ const SportDetails = (props) => {
         </div>
         <div className={"col-12"}>
             <p>
-                {sport.sportGoverningBody && <div>Sport governing body: <span className={"font-weight-bold"}>{sport.sportGoverningBody}</span></div>}
+                {sport.sportGoverningBody &&
+                <div>Sport governing body: <span className={"font-weight-bold"}>{sport.sportGoverningBody}</span></div>}
                 {sport.sportGoverningBodyDescription && <div>
-                    Sport governing body description: <span className={"font-weight-bold"}>{sport.sportGoverningBodyDescription}</span>
+                    Sport governing body description: <span
+                    className={"font-weight-bold"}>{sport.sportGoverningBodyDescription}</span>
                 </div>}
             </p>
         </div>

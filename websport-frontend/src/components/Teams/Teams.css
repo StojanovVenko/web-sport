@@ -1,3 +1,38 @@
 #teams {
     margin-top: 120px;
 }
+
+.team-item:hover {
+    border: 3px red solid;
+    color:red;
+}
+
+.team-icon {
+    /*border: 1px red solid;*/
+    padding: 20px;
+}
+
+.team-hover-icon {
+    border: 3px red solid;
+    color:red;
+}
+
+.btn-outline-ws {
+    color: rgb(242, 101, 34);
+    border: 1px rgb(242, 101, 34) solid;
+}
+
+.btn-outline-ws:hover {
+    color: white;
+    background-color: rgb(242, 101, 34);
+}
+
+.btn-ws {
+    color: white;
+    background-color: rgb(242, 101, 34);
+}
+
+.btn-ws:hover {
+    color: white;
+    background-color: rgb(210, 70, 0);
+}
