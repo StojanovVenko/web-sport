@@ -9,20 +9,17 @@ const HeaderSectionSearch = (props) => {
     const [searchTeam, setSearchTeam] = useState("");
     const [inputValue, setInputValue] = useState("");
 
-    const [category, setCategory] = useState(props.category ? props.category : categories.players)
+    let category = props.category ? props.category : categories.players;
     const history = useHistory();
-    const location = useLocation();
 
     const searchAboutCategory = (cat) => {
-        setCategory(cat);
-
         if (cat === categories.players) {
             setInputValue(searchPlayer);
         }
         if (cat === categories.teams) {
             setInputValue(searchTeam);
         }
-
+        props.setCategory(cat);
         history.push("/" + cat.toLowerCase());
     }
 
@@ -65,10 +62,11 @@ const HeaderSectionSearch = (props) => {
                 <div className="containt_main w-75 ml-auto mr-auto">
                     <div id="mySidenav" className="sidenav">
                         <a href="javascript:void(0)" className="closebtn" onClick={props.closeNav}>&times;</a>
+                        <Link to={"/home"}>Home</Link>
                         <Link onClick={() => searchAboutCategory(categories.players)} to={"/players"}>Players</Link>
                         <Link onClick={() => searchAboutCategory(categories.teams)} to={"/teams"}>Teams</Link>
                         <Link onClick={() => searchAboutCategory(categories.sports)} to={"/sports"}>Sports</Link>
-                        <Link to={"#"}>Universities</Link>
+                        <Link to={"/about"}>About</Link>
                     </div>
                     <span className="toggle_icon" onClick={props.openNav}>
                         {/*<i className="fa fa-align-justify w-100 h-100" />*/}

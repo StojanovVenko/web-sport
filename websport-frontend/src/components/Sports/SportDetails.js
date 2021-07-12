@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import SportPlayers from "./SportPlayers";
+import PlayersPagination from "../Players/PlayersPagination";
 
 const SportDetails = (props) => {
     const sport = props.sport;
@@ -68,7 +68,9 @@ const SportDetails = (props) => {
             </p>
         </div>
         <div className={"col-12"}>
-            {sport.players && <SportPlayers players={sport.players}/>}
+            {sport.players && <PlayersPagination players={sport.players}
+                                                 getPlayerDetails={props.getPlayerDetails}
+                                                 setCategory={props.setCategory}/>}
         </div>
     </div>);
 };

@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Player implements Comparable<Player> {
+    String URI;
     String name;
     String fullName;
     Double height;

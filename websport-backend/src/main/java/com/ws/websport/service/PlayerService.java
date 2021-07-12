@@ -5,4 +5,6 @@ import com.ws.websport.model.exceptions.PlayerNotFoundException;
 
 public interface PlayerService {
     Player getPlayerInfo(String name) throws PlayerNotFoundException;
+
+    Player getPlayerInfoWithURI(String URI) throws PlayerNotFoundException;
 }

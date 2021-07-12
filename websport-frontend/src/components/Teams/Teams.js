@@ -1,6 +1,8 @@
 import React from "react";
 import "./Teams.css";
 import dateUtils from "../../utils/dateUtils";
+import PlayersPagination from "../Players/PlayersPagination";
+import SportDetails from "../Sports/SportDetails";
 
 const Teams = (props) => {
     const team = props.team;
@@ -11,7 +13,8 @@ const Teams = (props) => {
     </div>;
 
     return (
-        <div id={"teams"} className="container text-light rounded-3 pd-container my-3 mx-auto text-left" style={{opacity: "0.8"}}>
+        <div id={"teams"} className="container text-light rounded-3 pd-container my-3 mx-auto text-left"
+             style={{opacity: "0.8"}}>
             {team.label && <>
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4 pt-3 pb-3"}>
@@ -19,39 +22,49 @@ const Teams = (props) => {
                     </div>
                 </div>
                 <hr/>
-            </>
-            }
+            </>}
             {team.clubName && <div>
-                Clubname: <span className={"font-weight-bold"}>{team.clubName}</span>
-            </div>
-            }
-            {
-                team.fullName && <div>
-                    Club full name: <span className={"font-weight-bold"}>{team.fullName}</span>
-                </div>
-            }
-            {team.description && <><p>Descrtiption: <span className={"font-weight-bold"}>{team.description}</span></p>
+                <span className={"text-ws"}>Clubname:</span> <span className={"font-weight-bold"}>{team.clubName}</span>
+            </div>}
+            {team.fullName && <div><span className={"text-ws"}>
+                Club full name: </span><span className={"font-weight-bold"}>{team.fullName}</span>
+            </div>}
+            {team.description && <><p><span className={"text-ws"}>Descrtiption:</span> <span
+                className={"font-weight-bold"}>{team.description}</span></p>
                 <hr/>
             </>}
             {team.formationDate &&
-            <div>Formation date: <span className={"font-weight-bold"}> {getDate(team.formationDate).toDateString()}</span></div>}
+            <div><span className={"text-ws"}>Formation date:</span> <span
+                className={"font-weight-bold"}> {getDate(team.formationDate).toDateString()}</span></div>}
             {team.groundName && <div>
-                Ground: <span className={"font-weight-bold"}>{team.groundName}</span>
+                <span className={"text-ws"}>Ground:</span> <span className={"font-weight-bold"}>{team.groundName}</span>
             </div>}
             {team.groundDescription && <div>
-                Ground description: <span className={"font-weight-bold"}>{team.groundDescription}</span>
+                <span className={"text-ws"}>Ground description:</span> <span
+                className={"font-weight-bold"}>{team.groundDescription}</span>
             </div>}
             {team.chairmanName && <div>
-                {team.chairmanTitle ? <span>{team.chairmanTitle}: </span>: "Chairman name: "}
-                <u>{team.chairmanName}</u> <span>{team.chairmanDescription && <span>( {team.chairmanDescription} )</span>}</span>
-            <hr/></div>
-            }
+                {team.chairmanTitle ? <span className={"text-ws"}>{team.chairmanTitle}: </span> : "Chairman name: "}
+                <u>{team.chairmanName}</u> <span>{team.chairmanDescription &&
+            <span>( {team.chairmanDescription} )</span>}</span>
+                <hr/>
+            </div>}
             {team.managerName && <div>
-                {team.managerTitle ? <span>{team.managerTitle}: </span>: "Manager name: "}
-                <u>{team.managerName}</u> <span>{team.managerDescription && <span>( {team.managerDescription} )</span>}<hr/></span>
-            </div>
-
-            }
+                {team.managerTitle ? <span className={"text-ws"}>{team.managerTitle}: </span> : "Manager name: "}
+                <u>{team.managerName}</u> <span>{team.managerDescription && <span>( {team.managerDescription} )</span>}
+                <hr/></span>
+            </div>}
+            {team.nicknames && <div><h4 className={"text-ws"}>Nicknames</h4>
+                <ul>
+                    {team.nicknames.map(n => {
+                        return <li>{n}</li>
+                    })}
+                </ul>
+                <hr/>
+            </div>}
+            {team.players && <PlayersPagination players={team.players}
+                                                getPlayerDetails={props.getPlayerDetails}
+                                                setCategory={props.setCategory}/>}
         </div>);
 };
 

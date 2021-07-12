@@ -14,6 +14,9 @@ import java.util.Date;
 public class Utils {
 
     public static void addPlayerBaseInfo(Player player, QuerySolution qs) {
+        player.setURI(qs.contains("player") && qs.get("player").isResource() ?
+                qs.getResource("player").toString().split("/")[qs.getResource("player").toString().split("/").length - 1]
+                : null);
         player.setName(qs.get("name") != null && qs.get("name").isLiteral() ? qs.get("name").asLiteral().getLexicalForm() : null);
         player.setFullName(qs.get("fullName") != null && qs.get("fullName").isLiteral() ? qs.get("fullName").asLiteral().getLexicalForm() : null);
         player.setHeight(qs.get("height") != null ? qs.get("height").asLiteral().getDouble() : null);

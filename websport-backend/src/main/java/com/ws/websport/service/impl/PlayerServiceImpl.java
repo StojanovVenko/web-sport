@@ -26,6 +26,21 @@ public class PlayerServiceImpl implements PlayerService {
         this.playerRepository.addPlayerBaseInfo(uri, player);
         this.playerRepository.addPlayerQuotes(uri, player);
         this.playerRepository.addPlayerTeams(uri, player);
+        player.setURI(uri);
+        return player;
+    }
+
+    @Override
+    public Player getPlayerInfoWithURI(String uri) throws PlayerNotFoundException {
+        Player player = new Player();
+        String tempUri = uri;
+
+        uri = "http://dbpedia.org/resource/" + uri;
+
+        this.playerRepository.addPlayerBaseInfo(uri, player);
+        this.playerRepository.addPlayerQuotes(uri, player);
+        this.playerRepository.addPlayerTeams(uri, player);
+        player.setURI(tempUri);
         return player;
     }
 }

@@ -26,13 +26,14 @@ class App extends React.Component {
             currPlayer: [],
             currSport: null,
             currTeam: null,
+            currCategory: null,
 
             selectedSport: {sport: "Choose sport"}
         };
     }
 
     getTeamDetails = (teamName) => {
-        this.setState({isLoading: true});
+        this.setState({isLoading: true, currCategory: categories.teams});
         teamService.getTeam(teamName)
             .then(response => {
                 this.setState({currTeam: response.data, isLoading: false});
@@ -43,7 +44,7 @@ class App extends React.Component {
     }
 
     getPlayerDetails = (name) => {
-        this.setState({isLoading: true});
+        this.setState({isLoading: true, currCategory: categories.players});
         PlayersService.getPlayer(name)
             .then(response => {
                 this.setState({currPlayer: response.data, isLoading: false});
@@ -54,8 +55,23 @@ class App extends React.Component {
         });
     }
 
+    getPlayerDetailsByURI = (uri) => {
+        this.setState({isLoading: true, currCategory: categories.players});
+        PlayersService.getPlayerByURI(uri)
+            .then(response => {
+                this.setState({currPlayer: response.data, isLoading: false});
+                console.log(response.data);
+                console.log(this.state.currCategory, "hereee")
+
+            }).catch(err => {
+            console.log("Error in Players component!");
+            this.setState({isLoading: false});
+        });
+        console.log(this.state.currCategory, "hereee")
+    }
+
     selectSport = (sport) => {
-        this.setState({isLoading: true, selectedSport: sport});
+        this.setState({isLoading: true, selectedSport: sport, currCategory: categories.sports});
         sportsService.getSport(sport.URI)
             .then(response => {
                 console.log(response.data);
@@ -78,6 +94,17 @@ class App extends React.Component {
     render() {
 
         return <div className={"h-auto"}>
+            <Header closeNav={this.closeNav}
+                    openNav={this.openNav}
+                    getPlayerDetails={this.getPlayerDetails}
+                    category={this.state.currCategory}
+                    setCategory={(cat) => {
+                        this.setState({currCategory: cat})
+                    }}
+                    currPlayer={this.state.currPlayer}
+                    sport={this.state.selectedSport}
+                    selectSport={this.selectSport}
+                    getTeamDetails={this.getTeamDetails}/>
             <Switch>
                 <Route path={"/"} exact>
                     <Redirect to={"/home"}/>
@@ -85,16 +112,7 @@ class App extends React.Component {
                 <Route path={"/home"} exact>
                     <div className="banner_bg_main">
                         <div className={"container"}>
-                            <Header closeNav={this.closeNav}
-                                    openNav={this.openNav}
-                                    getPlayerDetails={this.getPlayerDetails}
-                                    category={categories.players}
-                                    sport={this.state.selectedSport}
-                                    selectSport={this.selectSport}
-                                    getTeamDetails={this.getTeamDetails} />
                             <div className={"blank_content"}/>
-
-
                             <div className="banner_section layout_padding">
                                 <div className="container">
                                     {/*<Carousel1 />*/}
@@ -104,65 +122,33 @@ class App extends React.Component {
                                 {/*<Carousel1 />*/}
                                 {/*<Carousel2 />*/}
                             </div>
-
-
                         </div>
-
-                        {/*// <!-- header section end -->*/}
-                        {/*// <!-- banner section start -->*/}
-
-                        {/*// <!-- banner section end -->*/}
-
                     </div>
 
                 </Route>
                 <Route path={"/players"} exact>
-                    <Header closeNav={this.closeNav}
-                            openNav={this.openNav}
-                            getPlayerDetails={this.getPlayerDetails}
-                            category={categories.players}
-                            sport={this.state.selectedSport}
-                            selectSport={this.selectSport}
-                            getTeamDetails={this.getTeamDetails} />
                     {this.state.isLoading && <Loader/>}
                     {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}/>}
                 </Route>
                 <Route path={"/teams"} exact>
-                    <Header closeNav={this.closeNav}
-                            openNav={this.openNav}
-                            getPlayerDetails={this.getPlayerDetails}
-                            category={categories.teams}
-                            sport={this.state.selectedSport}
-                            selectSport={this.selectSport}
-                            getTeamDetails={this.getTeamDetails} />
                     <div className={"blank_content text-center"}>
-                        <Teams team={this.state.currTeam}/>
+                        <Teams team={this.state.currTeam}
+                               getPlayerDetails={this.getPlayerDetailsByURI}
+                               setCategory={(cat) => this.setState({currCategory: cat})}/>
                     </div>
                 </Route>
                 <Route path={"/sports/details"} exact>
-                    <Header closeNav={this.closeNav}
-                            openNav={this.openNav}
-                            getPlayerDetails={this.getPlayerDetails}
-                            category={categories.sports}
-                            sport={this.state.selectedSport}
-                            selectSport={this.selectSport}
-                            getTeamDetails={this.getTeamDetails} />
                     {this.state.isLoading && <Loader/>}
-                    {this.state.isLoading || <SportDetails sport={this.state.currSport}/>}
+                    {this.state.isLoading || <SportDetails sport={this.state.currSport}
+                                                           getPlayerDetails={this.getPlayerDetailsByURI}
+                                                           setCategory={(cat) => this.setState({currCategory: cat})}/>}
                 </Route>
                 <Route path={"/sports"}>
-                    <Header closeNav={this.closeNav}
-                            openNav={this.openNav}
-                            getPlayerDetails={this.getPlayerDetails}
-                            category={categories.sports}
-                            sport={this.state.selectedSport}
-                            selectSport={this.selectSport}
-                            getTeamDetails={this.getTeamDetails} />
-
                     <div className={"blank_content text-center"}>
                         <Sports selectSport={this.selectSport}/>
                     </div>
                 </Route>
+                <Redirect to={"/home"}/>
             </Switch>
             <Footer/>
 

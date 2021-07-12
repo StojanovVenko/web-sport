@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import Pagination from "../Pagination/pagination";
 import PlayerDetails from "../PlayerDetails/PlayerDetails";
+import {useHistory} from "react-router";
+import {categories} from "../../constants/constants";
+import {Link} from "react-router-dom";
 
-const SportPlayers = (props) => {
+const PlayersPagination = (props) => {
     const [showDetails, setShowDetails] = useState(false);
     const [players, setPlayers] = useState(props.players.slice(0, 8));
     const [currPlayer, setCurrPlayer] = useState();
+    const history = useHistory();
     const [pagination, setPagination] = useState({
-        page:0,
+        page: 0,
         pageSize: 8,
         totalPages: props.players ? props.players.length / 10 : 0,
     });
@@ -21,12 +25,20 @@ const SportPlayers = (props) => {
         });
     }
 
-    if(showDetails) return <div id={"pdis"} className={"row "}>
+    const fetchDataForPlayer = () => {
+        props.getPlayerDetails(currPlayer.uri);
+        props.setCategory(categories.players);
+        history.push("/players");
+    }
+
+    if (showDetails) return <div id={"pdis"} className={"row "}>
         <hr/>
         <PlayerDetails player={currPlayer}/>
         <a onClick={() => setShowDetails(false)}
-                className={"btn btn-ws w-75 ml-auto mr-auto"}
-                href={"#sp"}>Back</a>
+           className={"btn btn-ws w-75 ml-auto mr-auto"}
+           href={"#sp"}>Back</a>
+        <Link onClick={() => fetchDataForPlayer()} to={"/players"} className={"mt-3 w-75 ml-auto mr-auto btn btn-outline-ws"}>
+            Search all about {currPlayer.name ? currPlayer.name : "this player"}</Link>
         <hr/>
     </div>
 
@@ -41,11 +53,11 @@ const SportPlayers = (props) => {
         }
         {players.map(p => {
             return <div className={"col-sm-6 col-md-4 col-lg-3 mb-5"}>
-                <div className="card w-75 ml-auto mr-auto" style={{minHeight: "500px"}} >
+                <div className="card w-75 ml-auto mr-auto" style={{minHeight: "500px"}}>
                     <img src={p.thumbnail ? p.thumbnail : "../images/user.png"}
                          className="card-img-top"
                          alt="..."
-                        style={{width: "100%", height: "150px"}}/>
+                         style={{width: "100%", height: "150px"}}/>
                     <div className="card-body">
                         {p.name && <h5 className="card-title">{p.name}</h5>}
                         {!p.name && p.fullName && <h5>{p.fullName}</h5>}
@@ -73,4 +85,4 @@ const SportPlayers = (props) => {
     </div>
 }
 
-export default SportPlayers;
+export default PlayersPagination;

@@ -23,8 +23,11 @@ public class PlayerController {
     }
 
     @GetMapping("/search")
-    public Player getPlayerInfo(@RequestParam(name = "player") String player) throws PlayerNotFoundException {
+    public Player getPlayerInfo(@RequestParam(name = "player", required = false) String player,
+                                @RequestParam(name = "uri", required = false) String uri) throws PlayerNotFoundException {
+        if(uri != null) {
+            return playerService.getPlayerInfoWithURI(uri);
+        }
         return playerService.getPlayerInfo(WordUtils.capitalizeFully(player));
     }
-
 }

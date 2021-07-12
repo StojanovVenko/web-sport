@@ -47,29 +47,29 @@ public class SportRepositoryImpl implements SportReposiotry {
                 "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
                 "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
                 "SELECT distinct * where { { " +
-                "?user dbp:sport dbr:"+ sportURI +  " . " +
-                "        ?user rdf:type dbo:Person . " +
-                "        OPTIONAL { ?user dbp:name ?name. } " +
-                "        OPTIONAL { ?user dbp:fullname ?fullName. } " +
-                "        OPTIONAL { ?user dbo:height ?height. } " +
-                "        OPTIONAL { ?user dbo:thumbnail ?thumbnail. } " +
-                "        OPTIONAL { ?user dbo:abstract ?abstract. } " +
-                "        OPTIONAL { ?user rdfs:comment ?comment. } " +
-                "        OPTIONAL { ?user dbo:birthDate ?birthDate. } " +
-                "        OPTIONAL { ?user dbp:birthPlace ?birthPlace. } " +
+                "?player dbp:sport dbr:"+ sportURI +  " . " +
+                "        ?player rdf:type dbo:Person . " +
+                "        OPTIONAL { ?player dbp:name ?name. } " +
+                "        OPTIONAL { ?player dbp:fullname ?fullName. } " +
+                "        OPTIONAL { ?player dbo:height ?height. } " +
+                "        OPTIONAL { ?player dbo:thumbnail ?thumbnail. } " +
+                "        OPTIONAL { ?player dbo:abstract ?abstract. } " +
+                "        OPTIONAL { ?player rdfs:comment ?comment. } " +
+                "        OPTIONAL { ?player dbo:birthDate ?birthDate. } " +
+                "        OPTIONAL { ?player dbp:birthPlace ?birthPlace. } " +
                 "        FILTER (lang(?abstract) = \"en\" && lang(?comment) =\"en\") " +
                 "} " +
                 "union { " +
-                "?user dbp:sports dbr:"+ sportURI + " . " +
-                "        ?user rdf:type dbo:Person . " +
-                "        OPTIONAL { ?user dbp:name ?name. } " +
-                "        OPTIONAL { ?user dbp:fullname ?fullName. } " +
-                "        OPTIONAL { ?user dbo:height ?height. } " +
-                "        OPTIONAL { ?user dbo:thumbnail ?thumbnail. } " +
-                "        OPTIONAL { ?user dbo:abstract ?abstract. } " +
-                "        OPTIONAL { ?user rdfs:comment ?comment. } " +
-                "        OPTIONAL { ?user dbo:birthDate ?birthDate. } " +
-                "        OPTIONAL { ?user dbp:birthPlace ?birthPlace. } " +
+                "?player dbp:sports dbr:"+ sportURI + " . " +
+                "        ?player rdf:type dbo:Person . " +
+                "        OPTIONAL { ?player dbp:name ?name. } " +
+                "        OPTIONAL { ?player dbp:fullname ?fullName. } " +
+                "        OPTIONAL { ?player dbo:height ?height. } " +
+                "        OPTIONAL { ?player dbo:thumbnail ?thumbnail. } " +
+                "        OPTIONAL { ?player dbo:abstract ?abstract. } " +
+                "        OPTIONAL { ?player rdfs:comment ?comment. } " +
+                "        OPTIONAL { ?player dbo:birthDate ?birthDate. } " +
+                "        OPTIONAL { ?player dbp:birthPlace ?birthPlace. } " +
                 "        FILTER (lang(?abstract) = \"en\" && lang(?comment) =\"en\") " +
                 "} }";
 

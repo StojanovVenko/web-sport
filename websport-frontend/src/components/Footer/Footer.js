@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
 
@@ -8,23 +9,20 @@ const Footer = () => {
         <div>
             <div className="footer_section layout_padding">
                 <div className="container">
-                    <div className="footer_logo"><a
-                        href="../../../../Desktop/WBS%20project/eflyer-master/index.html"><img
-                        src="images/footer-logo.png"/></a></div>
-                    <div className="input_bt">
-                        <input type="text" className="mail_bt" placeholder="Your Email" name="Your Email"/>
-                        <span className="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+                    <div className="col-sm-3 ml-auto mr-auto display-5 text-center text-light">
+                        <Link className={"text-decoration-none text-light"} to={"/home"}>WEBSPORT</Link>
                     </div>
+
                     <div className="footer_menu">
                         <ul>
-                            <li><a href="#">Best Sellers</a></li>
-                            <li><a href="#">Gift Ideas</a></li>
-                            <li><a href="#">New Releases</a></li>
-                            <li><a href="#">Today's Deals</a></li>
-                            <li><a href="#">Customer Service</a></li>
+                            <li><Link to={"/home"}>Home</Link></li>
+                            <li><Link to={"/players"}>Players</Link></li>
+                            <li><Link to={"/teams"}>Teams</Link></li>
+                            <li><Link to={"/sports"}>Sports</Link></li>
+                            <li><Link to={"/about"}>About</Link></li>
                         </ul>
                     </div>
-                    <div className="location_main">Help Line Number : <a href="#">+1 1800 1200 1200</a></div>
+                    <div className="location_main">Help Line Number : <a href="#">+38974 202 269, +38970 581 901</a></div>
                 </div>
             </div>
             <div className="copyright_section">
