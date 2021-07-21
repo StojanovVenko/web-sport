@@ -34,38 +34,69 @@ const SportDetails = (props) => {
             </div>
         </div>
         <div className={"col-12 mt-5"}>
-            <p>
-                {sport.comment && <div>Comment: <b>{sport.comment}</b></div>}
-            </p>
-        </div>
-        <div className={"col-12"}>
             {
-                seeMore === true ?
-                    <p>
-                        {sport.description && <div>Description:
-                            <span className={"font-weight-bold"}>{sport.description}</span>
-                            <span className="btn btn-link fa fa-angle-up"
-                                  onClick={() => setSeeMore(!seeMore)}> See less</span>
-                        </div>}
-                    </p>
-                    :
-                    <p>
-                        {sport.description && <div>Description:
-                            <span className={"font-weight-bold"}>{sport.description.substr(0, 1500)}</span>
-                            <span className="btn btn-link fa fa-angle-down" onClick={() => setSeeMore(!seeMore)}> See more</span>
-                        </div>}
-                    </p>
+                sport.comment &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Comment:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {sport.comment}
+                    </div>
+                </div>
             }
         </div>
         <div className={"col-12"}>
-            <p>
-                {sport.sportGoverningBody &&
-                <div>Sport governing body: <span className={"font-weight-bold"}>{sport.sportGoverningBody}</span></div>}
-                {sport.sportGoverningBodyDescription && <div>
-                    Sport governing body description: <span
-                    className={"font-weight-bold"}>{sport.sportGoverningBodyDescription}</span>
-                </div>}
-            </p>
+            {
+
+                sport.description &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Description:
+                    </div>
+                    {
+                        seeMore ?
+                            <div className={"col-10 font-weight-bold"}>
+                                <span className={"font-weight-bold"}>{sport.description}</span>
+                                <span className="btn btn-link fa fa-angle-up"
+                                      onClick={() => setSeeMore(!seeMore)}> See less</span>
+                            </div>
+                            :
+                            <div className={"col-10 font-weight-bold"}>
+                                <span className={"font-weight-bold"}>{sport.description.substr(0, 1500)}</span>
+                                {
+                                    sport.description.length > 1500 ? <span className="btn btn-link fa fa-angle-down" onClick={() => setSeeMore(!seeMore)}> See more</span> : null
+                                }
+                            </div>
+                    }
+                </div>
+            }
+        </div>
+        <div className={"col-12"}>
+            {
+                sport.sportGoverningBody &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Sport governing body:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {sport.sportGoverningBody}
+                    </div>
+                </div>
+            }
+        </div>
+        <div className={"col-12"}>
+            {
+                sport.sportGoverningBodyDescription &&
+                <div className={"row my-1"}>
+                    <div className={"col-2 text-ws"}>
+                        Sport governing body description:
+                    </div>
+                    <div className={"col-10 font-weight-bold"}>
+                        {sport.sportGoverningBodyDescription}
+                    </div>
+                </div>
+            }
         </div>
         <div className={"col-12"}>
             {sport.players && <PlayersPagination players={sport.players}
