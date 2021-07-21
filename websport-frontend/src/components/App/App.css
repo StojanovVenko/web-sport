@@ -26,6 +26,11 @@ body{
   color: #61dafb;
 }
 
+.text-ws {
+  color: rgb(242, 101, 34);
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -6,7 +6,7 @@ import {withRouter} from "react-router";
 
 const Header = (props) => {
 
-    return (<div className={"opacity"}>
+    return (<div id={"header"} className={"opacity"}>
             <HeaderSectionTop/>
             <HeaderSectionSearch closeNav={props.closeNav}
                                  openNav={props.openNav}

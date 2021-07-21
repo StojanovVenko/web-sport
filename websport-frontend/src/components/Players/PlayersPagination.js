@@ -16,11 +16,6 @@ const PlayersPagination = (props) => {
         totalPages: props.players ? props.players.length / 10 : 0,
     });
 
-    useEffect(() => {
-        console.log("Players", props.players)
-        setPlayers(props.players)
-    }, [props.players])
-
     const getNewPage = (e) => {
         setPlayers(props.players.slice(e.selected * pagination.pageSize, e.selected * pagination.pageSize + pagination.pageSize))
         setPagination({

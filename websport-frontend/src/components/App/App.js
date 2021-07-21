@@ -127,7 +127,8 @@ class App extends React.Component {
                     </div>
                 </Route>
                 <Route path={"/players"} exact>
-                    {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}/>}
+                    {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}
+                                                            getTeamDetails={this.getTeamDetails}/>}
                 </Route>
                 <Route path={"/teams"} exact>
                     <div className={"blank_content text-center"}>
