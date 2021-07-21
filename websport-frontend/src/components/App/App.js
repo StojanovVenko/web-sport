@@ -105,6 +105,7 @@ class App extends React.Component {
                     sport={this.state.selectedSport}
                     selectSport={this.selectSport}
                     getTeamDetails={this.getTeamDetails}/>
+            {this.state.isLoading && <Loader/>}
             <Switch>
                 <Route path={"/"} exact>
                     <Redirect to={"/home"}/>
@@ -124,21 +125,18 @@ class App extends React.Component {
                             </div>
                         </div>
                     </div>
-
                 </Route>
                 <Route path={"/players"} exact>
-                    {this.state.isLoading && <Loader/>}
                     {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}/>}
                 </Route>
                 <Route path={"/teams"} exact>
                     <div className={"blank_content text-center"}>
-                        <Teams team={this.state.currTeam}
+                        {this.state.isLoading || <Teams team={this.state.currTeam}
                                getPlayerDetails={this.getPlayerDetailsByURI}
-                               setCategory={(cat) => this.setState({currCategory: cat})}/>
+                               setCategory={(cat) => this.setState({currCategory: cat})}/>}
                     </div>
                 </Route>
                 <Route path={"/sports/details"} exact>
-                    {this.state.isLoading && <Loader/>}
                     {this.state.isLoading || <SportDetails sport={this.state.currSport}
                                                            getPlayerDetails={this.getPlayerDetailsByURI}
                                                            setCategory={(cat) => this.setState({currCategory: cat})}/>}

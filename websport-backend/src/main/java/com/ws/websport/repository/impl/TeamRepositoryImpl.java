@@ -128,7 +128,7 @@ public class TeamRepositoryImpl implements TeamRepository {
                 "    ?player ?name ?fullName ?height ?thumbnail " +
                 "    ?abstract ?comment ?birthDate ?birthPlace " +
                 " WHERE { " +
-                "    ?player dbp:clubs dbr:FC_Barcelona; " +
+                "    ?player dbp:clubs <" + teamURI +">; " +
                 "        rdf:type dbo:Person . " +
                 "    OPTIONAL { ?player dbp:name ?name. } " +
                 "    OPTIONAL { ?player dbp:fullname ?fullName. } " +

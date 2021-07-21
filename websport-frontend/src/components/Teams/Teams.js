@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Teams.css";
 import dateUtils from "../../utils/dateUtils";
 import PlayersPagination from "../Players/PlayersPagination";
-import SportDetails from "../Sports/SportDetails";
 
 const Teams = (props) => {
     const team = props.team;
