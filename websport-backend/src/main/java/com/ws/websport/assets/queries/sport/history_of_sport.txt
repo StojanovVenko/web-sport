@@ -1,0 +1,6 @@
+select distinct * where {
+    dbr:History_of_sport dbo:abstract ?historyAbstract .
+    dbr:Sport dbo:abstract ?sportAbstract ;
+    rdfs:comment ?sportComment .
+FILTER (lang(?historyAbstract) = "en" &&  lang(?sportAbstract) = "en" && lang(?sportComment) = "en")
+}

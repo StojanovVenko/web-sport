@@ -10,10 +10,10 @@ const PlayerTeam = (props) => {
     const getTeamDetails = () => {
         console.log("aaaaaaaaaaaaaaaa " + team.uri.split("/")[team.uri.split("/").length - 1]);
         props.getTeamDetails(team.uri.split("/")[team.uri.split("/").length - 1]);
-        history.push("/teams#");
+        history.push("/teams");
     };
 
-    return <div className="card w-50 ml-auto mr-auto mb-4">
+    return <div className="bg-ws-bg card w-50 ml-auto mr-auto mb-4">
         <div className="card-body">
             <h5 className="card-title border-bottom border-danger">{team.label}</h5>
             <p className="card-text text-dark">

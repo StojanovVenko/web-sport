@@ -14,6 +14,7 @@ import sportsService from "../../service/sportsService";
 import teamService from "../../service/teamService";
 import Loader from "../Loader/Loader";
 import Teams from "../Teams/Teams";
+import Home from "../Home/Home";
 
 class App extends React.Component {
 
@@ -28,8 +29,19 @@ class App extends React.Component {
             currTeam: null,
             currCategory: null,
 
-            selectedSport: {sport: "Choose sport"}
+            selectedSport: {sport: "Choose sport"},
+
+            sportBaseInfo: { historyAbstract: "", sportAbstract: "", sportComment: ""}
         };
+    }
+
+    componentDidMount() {
+        sportsService.getSportInfo()
+            .then(response => {
+                this.setState({ sportBaseInfo: response.data });
+                console.log("ooooooooooookkkk")
+            })
+            .catch(err => console.log(err));
     }
 
     getTeamDetails = (teamName) => {
@@ -111,20 +123,7 @@ class App extends React.Component {
                     <Redirect to={"/home"}/>
                 </Route>
                 <Route path={"/home"} exact>
-                    <div className="banner_bg_main">
-                        <div className={"container"}>
-                            <div className={"blank_content"}/>
-                            <div className="banner_section layout_padding">
-                                <div className="container">
-                                    {/*<Carousel1 />*/}
-                                </div>
-                            </div>
-                            <div className="jewellery_section">
-                                {/*<Carousel1 />*/}
-                                {/*<Carousel2 />*/}
-                            </div>
-                        </div>
-                    </div>
+                    <Home sportBaseInfo={this.state.sportBaseInfo}/>
                 </Route>
                 <Route path={"/players"} exact>
                     {this.state.isLoading || <PlayerDetails player={this.state.currPlayer}
@@ -133,8 +132,8 @@ class App extends React.Component {
                 <Route path={"/teams"} exact>
                     <div className={"blank_content text-center"}>
                         {this.state.isLoading || <Teams team={this.state.currTeam}
-                               getPlayerDetails={this.getPlayerDetailsByURI}
-                               setCategory={(cat) => this.setState({currCategory: cat})}/>}
+                                                        getPlayerDetails={this.getPlayerDetailsByURI}
+                                                        setCategory={(cat) => this.setState({currCategory: cat})}/>}
                     </div>
                 </Route>
                 <Route path={"/sports/details"} exact>

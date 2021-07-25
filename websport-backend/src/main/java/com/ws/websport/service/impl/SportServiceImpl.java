@@ -1,6 +1,7 @@
 package com.ws.websport.service.impl;
 
 import com.ws.websport.model.Sport;
+import com.ws.websport.model.dto.SportInfoDTO;
 import com.ws.websport.repository.AssetsRepository;
 import com.ws.websport.repository.SportReposiotry;
 import com.ws.websport.service.SportService;
@@ -22,5 +23,10 @@ public class SportServiceImpl implements SportService {
         this.sportReposiotry.addSportBaseInfo(sportURI, sport);
         this.sportReposiotry.addSportPlayers(sportURI, sport);
         return sport;
+    }
+
+    @Override
+    public SportInfoDTO getSportHistory() {
+        return this.sportReposiotry.getSportHistory();
     }
 }

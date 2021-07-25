@@ -11,28 +11,31 @@ const SportDetails = (props) => {
         You need to select sport!
     </div>
 
-    const sportImageURL = sport.thumbnail ?
-        sport.thumbnail :
-        props.image;
 
 
     return (<div className={"container text-light row rounded-3 pd-container my-3 mx-auto"}>
         <div className={"col-12 text-center d-flex justify-content-center my-2"}>
-            <div>
-                {sport.label && <h3 className={"text-light pb-0 my-2"}><b
+            <div className={"mb-5"}>
+                {sport.label && <h2 className={"text-light pb-3 my-2"}><b
                     className={"border-bottom border-danger border-3 text-success"}>{sport.label.toUpperCase()}</b>
-                </h3>}
+                </h2>
+                }
                 {sport.thumbnail && <a href={sport.thumbnail} target={"_blank"}>
                     <img
                         className="mx-auto player-image my-1 rounded"
                         title={"Show image..."}
-                        style={{height: "100%", width: "auto"}}
+                        style={{height: "100%", width: "auto", maxHeight: "400px"}}
                         alt={"Sport image"}
                         src={sport.thumbnail}
                     />
-                </a>}
+                </a>
+
+                }
+
             </div>
+
         </div>
+        <hr className={"w-75 ml-auto mr-auto mt-5"}/>
         <div className={"col-12 mt-5"}>
             {
                 sport.comment &&
@@ -48,7 +51,6 @@ const SportDetails = (props) => {
         </div>
         <div className={"col-12"}>
             {
-
                 sport.description &&
                 <div className={"row my-1"}>
                     <div className={"col-2 text-ws"}>
@@ -98,10 +100,14 @@ const SportDetails = (props) => {
                 </div>
             }
         </div>
+        <hr className={"w-75 ml-auto mr-auto mt-5"}/>
+
         <div className={"col-12"}>
-            {sport.players && <PlayersPagination players={sport.players}
+            {sport.players && <>
+                <h2 className={"text-ws text-center p-2"}>Players in this sport</h2>
+                <PlayersPagination players={sport.players}
                                                  getPlayerDetails={props.getPlayerDetails}
-                                                 setCategory={props.setCategory}/>}
+                                                 setCategory={props.setCategory}/></>}
         </div>
     </div>);
 };

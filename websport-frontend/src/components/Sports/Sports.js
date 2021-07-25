@@ -15,7 +15,7 @@ const Sports = (props) => {
     return (<div id={"sports"} className={"container"}>
         {
 
-            <div className={"row"}>
+            <div className={"row pb-100 mb-5"}>
                 {
                     sports.map(sport => {
                         return <div onClick={() => selectSport(sport)} className={"col-sm-4 col-md-2"}>

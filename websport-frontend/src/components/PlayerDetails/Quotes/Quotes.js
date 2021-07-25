@@ -15,8 +15,8 @@ const Quotes = (props) => {
 
     return (
         quotes.length !== 0 ?
-            <div>
-                <h1 className={"text-light text-center p-2"}>Quotes</h1>
+            <div className={"mt-5 mb-5"}>
+                <h2 className={"text-ws text-center p-2"}>Quotes</h2>
                 <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner">
                         {renderQuotes()}

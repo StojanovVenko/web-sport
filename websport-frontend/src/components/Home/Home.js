@@ -2,30 +2,19 @@ import React from "react";
 
 const Home = (props) => {
 
-    return (
-        <div className="banner_bg_main" >
-            <div className={"container"}>
+    return (<div >
+            <div className="banner_bg_main mb-5" style={{minHeight: "600px"}} >
                 {props.children}
-
-
-                {/*<div className="banner_section layout_padding">*/}
-                {/*    <div className="container">*/}
-                {/*        /!*<Carousel1 />*!/*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                {/*<div className="jewellery_section">*/}
-                {/*    /!*<Carousel2 />*!/*/}
-                {/*</div>*/}
-
+           </div>
+            <div className={"container text-dark rounded-3  my-3 mx-auto pb-100"} style={{opacity: "0.8"}}>
+                <h3 className={" pb-0 text-ws"}>What is sport?</h3>
+                <p>{props.sportBaseInfo.sportAbstract}</p>
+                <br/>
+                <h3 className={" pb-0 text-ws"}>History of sport</h3>
+                <p>{props.sportBaseInfo.historyAbstract}</p>
 
             </div>
-
-            {/*// <!-- header section end -->*/}
-            {/*// <!-- banner section start -->*/}
-
-            {/*// <!-- banner section end -->*/}
-            <div className={"blank_content"}/>
-        </div>
+    </div>
     );
 }
 

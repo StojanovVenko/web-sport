@@ -28,7 +28,10 @@ body{
 
 .text-ws {
   color: rgb(242, 101, 34);
+}
 
+.bg-ws-bg {
+  background-image: linear-gradient(to right, #c6c6c6, #dedede);
 }
 
 @keyframes App-logo-spin {

@@ -31,19 +31,19 @@ const PlayersPagination = (props) => {
         history.push("/players");
     }
 
-    if (showDetails) return <div id={"pdis"} className={"row "}>
-        <hr/>
+    if (showDetails) return <div id={"pdis"} className={"row mb-5"}>
+
         <PlayerDetails player={currPlayer}/>
         <a onClick={() => setShowDetails(false)}
            className={"btn btn-ws w-75 ml-auto mr-auto"}
            href={"#sp"}>Back</a>
-        <Link onClick={() => fetchDataForPlayer()} to={"/players"} className={"mt-3 w-75 ml-auto mr-auto btn btn-outline-ws"}>
+        <Link onClick={() => fetchDataForPlayer()} to={"/players"}
+              className={"mt-3 w-75 ml-auto mr-auto btn btn-outline-ws"}>
             Search all about {currPlayer.name ? currPlayer.name : "this player"}</Link>
-        <hr/>
+        <hr className={"w-75 ml-auto mr-auto mt-5"}/>
     </div>
 
-    return <div id={"sp"} className={"row"}>
-        <hr/>
+    return <div className={"row mb-5 mt-3"}>
         {pagination.totalPages > 1 && <Pagination
             page={pagination.page}
             totalPages={pagination.totalPages}
@@ -81,7 +81,6 @@ const PlayersPagination = (props) => {
             showDetails={getNewPage}
             message="Нема играчи"/>
         }
-        <hr/>
     </div>
 }
 

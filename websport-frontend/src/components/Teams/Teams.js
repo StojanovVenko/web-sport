@@ -19,10 +19,10 @@ const Teams = (props) => {
             {team.label && <>
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4 pt-3 pb-3"}>
-                        <h3 className={" pb-0 border-bottom border-danger border-3 text-success"}>{team.label}</h3>
+                        <h2 className={" pb-0 border-bottom border-danger border-3 text-success"}>{team.label}</h2>
                     </div>
                 </div>
-                <hr/>
+                <hr className={"w-75 ml-auto mr-auto mt-5"}/>
             </>}
             {team.clubName &&
                 <div className={"row my-1"}>
@@ -99,7 +99,7 @@ const Teams = (props) => {
                         {team.managerTitle ? team.managerTitle : "Manager name: "}
                     </div>
                     <div className={"col-10 font-weight-bold"}>
-                        {team.chairmanDescription}
+                        {team.managerName}
                     </div>
                 </div>
             }
@@ -117,9 +117,13 @@ const Teams = (props) => {
                     </div>
                 </div>
             }
-            {team.players && <PlayersPagination players={team.players}
-                                                getPlayerDetails={props.getPlayerDetails}
-                                                setCategory={props.setCategory}/>}
+            <hr className={"w-75 ml-auto mr-auto mt-5"}/>
+            {team.players && team.players.length !==0 && <>
+                <h2 id={"sp"} className={"text-ws text-center p-2"}>Players in this team</h2>
+                <PlayersPagination players={team.players}
+                                   getPlayerDetails={props.getPlayerDetails}
+                                   setCategory={props.setCategory}/>
+            </> }
         </div>
     );
 };

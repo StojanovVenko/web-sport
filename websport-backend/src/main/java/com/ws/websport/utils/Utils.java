@@ -23,7 +23,9 @@ public class Utils {
         player.setThumbnail(qs.get("thumbnail") != null ? qs.get("thumbnail").toString() : null);
         player.setDescription(qs.get("abstract") != null && qs.get("abstract").isLiteral() ? qs.get("abstract").asLiteral().getLexicalForm() : null);
         player.setComment(qs.get("comment") != null && qs.get("comment").isLiteral() ? qs.get("comment").asLiteral().getLexicalForm() : null);
-        player.setBirthPlace(qs.get("birthPlace") != null ? qs.get("birthPlace").toString() : null);
+        player.setBirthPlace(qs.get("birthPlace") != null && qs.get("birthPlace").isLiteral() ?
+                qs.get("birthPlace").asLiteral().getLexicalForm() :
+                qs.get("birthPlace") != null ? qs.get("birthPlace").toString() : null);
         player.setDeathPlace(qs.get("deathPlace") != null ? qs.get("deathPlace").toString() : null);
         try {
             player.setBirthDate((qs.get("birthDate") != null && qs.get("birthDate").isLiteral()) ?

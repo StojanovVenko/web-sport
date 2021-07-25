@@ -2,6 +2,7 @@ package com.ws.websport.repository.impl;
 
 import com.ws.websport.assets.JenaAssets;
 import com.ws.websport.model.Sport;
+import com.ws.websport.model.dto.SportInfoDTO;
 import com.ws.websport.repository.SportReposiotry;
 import com.ws.websport.utils.Utils;
 import org.apache.jena.query.*;
@@ -81,5 +82,33 @@ public class SportRepositoryImpl implements SportReposiotry {
             }
         }
 
+    }
+
+    @Override
+    public SportInfoDTO getSportHistory() {
+        String queryHistoryOfSport = "prefix dbo: <http://dbpedia.org/ontology/> " +
+                "prefix dbr: <http://dbpedia.org/resource/> " +
+                "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+                "select distinct * where { " +
+                "    dbr:History_of_sport dbo:abstract ?historyAbstract . " +
+                "    dbr:Sport dbo:abstract ?sportAbstract ; " +
+                "    rdfs:comment ?sportComment . " +
+                "    FILTER (lang(?historyAbstract) = \"en\" &&  lang(?sportAbstract) = \"en\" && lang(?sportComment) = \"en\")" +
+                "}";
+
+        Query query = QueryFactory.create(queryHistoryOfSport);
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(JenaAssets.SPARQLEndpoint, query)) {
+            ResultSet resultSet = queryExecution.execSelect();
+            if (resultSet.hasNext()) {
+                QuerySolution qs = resultSet.nextSolution();
+
+                SportInfoDTO dto = new SportInfoDTO();
+                dto.setHistoryAbstract(qs.getLiteral("historyAbstract").getLexicalForm());
+                dto.setSportAbstract(qs.getLiteral("sportAbstract").getLexicalForm());
+                dto.setSportComment(qs.getLiteral("sportComment").getLexicalForm());
+                return dto;
+            }
+        }
+        return null;
     }
 }
