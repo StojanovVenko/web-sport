@@ -69,9 +69,9 @@ const HeaderSectionSearch = (props) => {
                         <Link to={"/about"}>About</Link>
                     </div>
                     <span className="toggle_icon" onClick={props.openNav}>
-                        {/*<i className="fa fa-align-justify w-100 h-100" />*/}
                         <img width={"38px"} src="images/toggle-icon.png"/>
                     </span>
+
                     <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"

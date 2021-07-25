@@ -103,7 +103,7 @@ const SportDetails = (props) => {
         <hr className={"w-75 ml-auto mr-auto mt-5"}/>
 
         <div className={"col-12"}>
-            {sport.players && <>
+            {sport.players && sport.players.length !== 0 && <>
                 <h2 className={"text-ws text-center p-2"}>Players in this sport</h2>
                 <PlayersPagination players={sport.players}
                                                  getPlayerDetails={props.getPlayerDetails}

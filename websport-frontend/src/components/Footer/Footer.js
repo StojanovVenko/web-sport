@@ -1,8 +1,9 @@
 import React from "react";
 import "./Footer.css";
 import {Link} from "react-router-dom";
+import {categories} from "../../constants/constants";
 
-const Footer = () => {
+const Footer = (props) => {
 
 
     return (
@@ -16,9 +17,9 @@ const Footer = () => {
                     <div className="footer_menu">
                         <ul>
                             <li><Link to={"/home"}>Home</Link></li>
-                            <li><Link to={"/players"}>Players</Link></li>
-                            <li><Link to={"/teams"}>Teams</Link></li>
-                            <li><Link to={"/sports"}>Sports</Link></li>
+                            <li><Link to={"/players"} onClick={() => props.setCategory(categories.players)}>Players</Link></li>
+                            <li><Link to={"/teams"} onClick={() => props.setCategory(categories.teams)}>Teams</Link></li>
+                            <li><Link to={"/sports"} onClick={() => props.setCategory(categories.sports)}>Sports</Link></li>
                             <li><Link to={"/about"}>About</Link></li>
                         </ul>
                     </div>

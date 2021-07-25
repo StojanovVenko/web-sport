@@ -24,9 +24,9 @@ const PlayerDetails = (props) => {
     }
 
 
-    if (player !== null && !checkPlayer(player)) return (<div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
+    if (player !== null && !checkPlayer(player)) return (<div className={"blank_content"}><div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
         <h3 className={"p-5 text-light text-center"}>Player not found!</h3>
-    </div>)
+    </div></div>)
 
 
 
@@ -34,7 +34,7 @@ const PlayerDetails = (props) => {
 
 
     return (
-        player.length !== 0 ?
+        player && player.length !== 0 ?
             <div className="container text-light rounded-3 pd-container my-3 mx-auto pb-100" style={{opacity: "0.8"}}>
                 <div className={"col-12 text-center d-flex justify-content-center"}>
                     <div className={"mt-4"}>
@@ -117,10 +117,10 @@ const PlayerDetails = (props) => {
                     }
                 </>}
             </div>
-            :
+            :<div className={"blank_content"}>
             <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
-                <h3 className={"p-5 text-light text-center"}>Search for player above!</h3>
-            </div>
+                <h3 className={"p-5 text-light text-center "}>Search for player above!</h3>
+            </div></div>
     );
 }
 ;

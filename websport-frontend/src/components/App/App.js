@@ -15,6 +15,7 @@ import teamService from "../../service/teamService";
 import Loader from "../Loader/Loader";
 import Teams from "../Teams/Teams";
 import Home from "../Home/Home";
+import About from "../About/About";
 
 class App extends React.Component {
 
@@ -39,7 +40,6 @@ class App extends React.Component {
         sportsService.getSportInfo()
             .then(response => {
                 this.setState({ sportBaseInfo: response.data });
-                console.log("ooooooooooookkkk")
             })
             .catch(err => console.log(err));
     }
@@ -63,7 +63,7 @@ class App extends React.Component {
                 console.log(response.data);
             }).catch(err => {
             console.log("Error in Players component!");
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, currPlayer: null});
         });
     }
 
@@ -93,6 +93,10 @@ class App extends React.Component {
                 console.log("Err ", err.message)
                 this.setState({isLoading: false});
             });
+    }
+
+    selectCategory = (cat) => {
+        this.setState({currCategory: cat})
     }
 
     openNav() {
@@ -146,9 +150,14 @@ class App extends React.Component {
                         <Sports selectSport={this.selectSport}/>
                     </div>
                 </Route>
+                <Route path={"/about"}>
+                    <div className={"blank_content text-center"}>
+                        <About />
+                    </div>
+                </Route>
                 <Redirect to={"/home"}/>
             </Switch>
-            <Footer/>
+            <Footer setCategory={this.selectCategory}/>
 
         </div>;
     }

@@ -8,9 +8,10 @@ const Teams = (props) => {
     const getDate = dateUtils.getDate;
 
     if (team === null) {
-        return <div id={"teams"} className={"content_blank"}>
-            <h1>You need to select team</h1>
-        </div>;
+        return <div className={"blank_content"}>
+            <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
+                <h3 className={"p-5 text-light text-center "}>Search for team above!</h3>
+            </div></div>
     }
 
     return (
