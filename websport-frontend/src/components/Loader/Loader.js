@@ -5,7 +5,7 @@ const Loader = () => {
 
     return <div className="loader_main">
         <div className="loader"/>
-        <p className={""}>Loading...</p>
+        <p className={"text-center text-ws font-weight-bold mt-3"}>Loading...</p>
     </div>;
 }
 

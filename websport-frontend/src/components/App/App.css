@@ -47,3 +47,9 @@ body{
   min-height: 500px;
   z-index: -999;
 }
+
+.home-container, .about-container {
+  opacity: 0.9;
+  background-color: #2b2a29;
+  margin: 3% auto !important;
+}
