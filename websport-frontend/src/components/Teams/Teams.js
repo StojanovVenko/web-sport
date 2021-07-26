@@ -8,10 +8,13 @@ const Teams = (props) => {
     const getDate = dateUtils.getDate;
 
     if (team === null) {
-        return <div className={"blank_content"}>
-            <div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>
-                <h3 className={"p-5 text-light text-center "}>Search for team above!</h3>
-            </div></div>
+        return (
+            <div className={"bg-ws"}>
+                {/*<div className="container text-light rounded-3 pd-container mx-auto" style={{opacity: "0.8"}}>*/}
+                {/*    <h3 className={"p-5 text-light text-center "}>Search for team above!</h3>*/}
+                {/*</div>*/}
+            </div>
+        )
     }
 
     return (
